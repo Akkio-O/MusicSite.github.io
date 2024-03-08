@@ -1,0 +1,72 @@
+$mainColor: #ea7e67
+@mixin btn
+	border-radius: 4px
+	background-color: #ea7e67
+	border: none
+	color: #FFFFFF
+	text-align: center
+	font-size: clamp(0.7rem, 1vw, 1rem)
+	padding: 10px
+	width: clamp(100px, 6vw, 150px)
+	transition: all 0.5s
+	cursor: pointer
+	margin: 5px
+	&:hover
+		background-color: #e75635
+@mixin profile__img
+	width: 100%
+	height: 100%
+	object-fit: cover
+	border-radius: 50%
+
+body
+	margin: 0
+	transition: background-color .5s
+
+*
+	box-sizing: border-box
+.pageup
+	position: fixed
+	display: none
+	bottom: 0
+	right: 0
+	margin: 15px
+	text-decoration: none
+	span
+		font-size: 3rem
+		color: $mainColor
+// .loader
+// 	border: 16px solid #f3f3f3
+// 	border-top: 16px solid #3498db
+// 	border-radius: 50%
+// 	width: 120px
+// 	height: 120px
+// 	animation: spin 2s linear infinite
+#enscart_image_wrapper
+	background-color: $mainColor !important
+.easynetshop-goods
+	display: none
+.btn_buy__decoration
+	display: none
+
+.easynetshop-cur-old-price
+	display: block
+	margin: 0 50px 10px 0
+	font-size: 16px
+	.old_price
+		text-decoration: line-through
+		margin-right: 10px
+	.discount
+		border-radius: 15px
+		background-color: $mainColor
+		color: #fff
+		padding: 5px 10px
+
+@import 'main/section/navbar'
+@import 'main/section/promo'
+@import 'main/section/advantages'
+@import 'main/section/recommend'
+@import 'main/section/footer'
+@import 'base/modal'
+@import 'base/media'
+@import 'base/animation'

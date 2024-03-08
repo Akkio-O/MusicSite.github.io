@@ -1,0 +1,217 @@
+.FrameCategory .FrameCategory_list
+	background-color: #333
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+	border-radius: 25px
+	position: relative
+	min-height: auto
+	padding: 10px
+
+.FrameCategory ul button
+	color: #c9c9c9
+	position: relative
+	z-index: 1
+	width: 100%
+	font-size: clamp(18px, 1vw, 25px)
+	border: clamp(1px, 0.5dvh, 2px) solid #D9D9D9
+	background-color: transparent
+	box-shadow: 0px 3.799196720123291px 3.799196720123291px rgba(0, 0, 0, 0.25)
+	border-radius: 20px
+	height: 75px
+	overflow: hidden
+	transition: color 1s
+	margin-bottom: 10px
+
+.FrameCategory ul button:hover
+	color: #1E1E1E
+
+.FrameCategory ul button::before
+	content: ''
+	position: absolute
+	left: -50px
+	width: 0
+	height: 100%
+	background-color: #c9c9c9
+	color: #1E1E1E
+	z-index: -1
+	transition: width 1s
+	bottom: 0px
+	top: 0px
+
+.FrameCategory ul button:hover::before,
+.FrameCategory ul button:hover~.ContextMenu::before,
+.ContextMenu:hover::before
+	width: 150%
+	color: #1E1E1E !important
+	border: none
+
+.catalog_title
+	background-color: #ea7e67
+	border-radius: 10px
+	padding: 10px
+	h2
+		color: #333
+		margin: 0 auto
+.positionBlock
+	position: relative
+	display: flex
+	margin-bottom: clamp(5px, 2vw, 10px)
+
+.ContextMenu
+	position: absolute
+	color: #1E1E1E
+	text-decoration: none
+	font-size: x-large
+	list-style: none
+	margin-left: 1px
+	width: 200%
+	left: 100%
+	margin: 5px 0
+	margin-left: 10px
+	z-index: -1
+	opacity: 0
+	transition: opacity 1s, transform 1s, z-index 0.5s
+	transition-delay: calc(0.1s * var(--i))
+	transform: translateX(-50px)
+	border-radius: 20px
+	overflow: hidden
+	padding: 15px
+	ul
+		list-style-type: none
+		background-color: #D9D9D9
+		border-radius: 15px
+
+.ContextMenu::before
+	content: ''
+	position: absolute
+	left: -50px
+	width: 0
+	height: 100%
+	background-color: #333
+	z-index: -1
+	transition: width 1s
+	bottom: 0px
+	top: 0px
+
+.ContextMenu.active
+	opacity: 1
+	z-index: 2
+	width: 200%
+	transform: rotateZ(0deg)
+
+.ContextMenu ul li a
+	text-decoration: none
+	border: 0.1px solid #1E1E1E
+	padding: 15px
+	border-radius: 15px
+	color: #1E1E1E
+	bottom: 150px
+	width: 100%
+	display: flex
+	font-family: Lekton
+	font-weight: 400
+	padding: 10px
+
+.ContextMenu ul li
+	position: relative
+	padding: 10px
+	button
+		color: #1e1e1e
+		font-weight: 500
+	.collapsible
+		cursor: pointer
+		padding: 18px
+		width: 100%
+		border: none
+		text-align: left
+		outline: none
+	.content
+		padding: 0 18px
+		max-height: 0
+		overflow: hidden
+		transition: max-height 0.2s ease-out
+
+.SubCategoryMenu ul li a
+	border: 2px solid #555
+	background-color: rgb(217, 217, 217)
+
+.promo
+	margin: 15px auto
+	.promo_search_img
+		margin: 0px
+	&_search
+		&__form
+			display: flex
+			input
+				background-color: #333
+				padding: 15px
+				border: none
+				width: 93%
+				border-radius: 10px
+		&__btn
+			border-radius: 15px
+			border: none
+			margin-left: 5px
+			padding: clamp(15px, 20px, 25px)
+			background-color: $mainColor
+
+.carousel
+	padding: 15px 0
+	border-radius: 15px
+	margin: 10px 0
+	background-color: #333
+	position: relative
+	.carousel_btn
+		display: flex
+		justify-content: space-between
+		// margin-bottom: -40px
+		.prev, .next
+			z-index: 1
+			position: absolute
+			cursor: pointer
+			text-align: center
+			width: 45px
+			transform: translateY(22svh)
+			height: auto
+			padding: 5px
+			color: #fff
+			background-color: #ea7e67
+			text-decoration: none
+			font-weight: bold
+			font-size: 1.5rem
+			transition: 0.6s ease
+			border-radius: 100%
+			&:hover
+				// background-color: #333
+				color: #333
+		.prev
+			left: 0
+		.next
+			right: 0
+	.container-list
+		overflow: hidden
+	.tns-item
+		img
+			display: block
+			margin: 0 auto
+			border-radius: 10px
+			width: 100%
+			height: 600px
+	.tns-nav
+		display: flex
+		justify-content: center
+		gap: 0.1vw
+		padding-top: 2dvh
+		button
+			cursor: pointer
+			height: 15px
+			width: 15px
+			margin: 0 2px
+			background-color: #bbb
+			border: none
+			border-radius: 50%
+			display: inline-block
+			transition: background-color 0.6s ease
+			&:hover
+				background-color: #717171
+		.tns-nav-active
+			background-color: #717171
