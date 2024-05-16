@@ -182,28 +182,20 @@ app.post('/fileExcel', async function (req, res) {
             CV_PRICE_18: row[37],
             CV_CURRENCY_13: row[34]
         }));
-
         const ejsTemplate = await fs.promises.readFile(ejsTemplatePath, 'utf8');
-
         const totalFunctions = 4; // Общее количество функций для отслеживания прогресса
         let processedFunctions = 0; // Количество выполненных функций
-
         // Отправляем информацию о начале выполнения операций
         sendProgressToClients(req, 0);
-
         // Вызываем функции с отслеживанием прогресса
         await funcExcel.insertOrUpdateProducts(products, ejsTemplate, con, productsFolderPath);
         sendProgressToClients(req, ++processedFunctions / totalFunctions * 100);
-
         await funcExcel.deleteUnusedFiles(productsFolderPath, con);
         sendProgressToClients(req, ++processedFunctions / totalFunctions * 100);
-
         await funcExcel.renderHTMLFiles(productsFolderPath, ejsTemplate, con);
         sendProgressToClients(req, ++processedFunctions / totalFunctions * 100);
-
         await funcExcel.createOrCheckFolderStructure(products, productsFolderPath);
-        sendProgressToClients(req, ++processedFunctions / totalFunctions * 100);
-
+        sendProgressToClients(req, ++processedFunctions / totalFunctions * 100)
         // Отправляем сообщение о завершении выполнения операций
         sendProgressToClients(req, 100);
 
