@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?wxsxgm');
-  src:  url('fonts/icomoon.eot?wxsxgm#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?wxsxgm') format('truetype'),
-    url('fonts/icomoon.woff?wxsxgm') format('woff'),
-    url('fonts/icomoon.svg?wxsxgm#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?545bjl');
+  src:  url('fonts/icomoon.eot?545bjl#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?545bjl') format('truetype'),
+    url('fonts/icomoon.woff?545bjl') format('woff'),
+    url('fonts/icomoon.svg?545bjl#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -164,6 +164,12 @@
 }
 .icon-music_note:before {
   content: "\e90a";
+}
+.icon-arrow_drop_down:before {
+  content: "\e933";
+}
+.icon-arrow_drop_up:before {
+  content: "\e934";
 }
 .icon-activity:before {
   content: "\e905";

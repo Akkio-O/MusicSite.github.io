@@ -1,0 +1,41 @@
+.category-main  
+    background-color: #ebeaea
+    padding: 1dvh
+    margin: 0 1dvh 1dvh
+    width: 100%
+    .navigation-block
+        list-style-type: none
+        padding: 0
+        margin: 0
+        display: flex
+    .breadcrumb-item
+        margin-right: 10px
+
+        &:last-child
+            margin-right: 0
+
+    .main-navigation-link,
+    #catalog-link,
+    #guitars-link,
+    #classical-guitars-link
+        text-decoration: none
+        color: #333
+        font-weight: bold
+
+    .main-navigation-link:hover,
+    #catalog-link:hover,
+    #guitars-link:hover,
+    #classical-guitars-link:hover
+        color: #555
+
+    .active .navigation-item
+        color: #777
+        cursor: default
+
+    .navigation-item
+        font-size: 1.2rem
+        margin: 1vw
+
+    @media (max-width: 768px)
+        .navigation-block
+            flex-wrap: wrap

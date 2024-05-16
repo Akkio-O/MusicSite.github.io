@@ -23,7 +23,7 @@
 			display: block
 			position: absolute
 			top: 0
-			transform: translateY(20px)
+			transform: translateY(15px)
 			width: 26px
 			height: 12px
 			cursor: pointer
@@ -35,6 +35,7 @@
 				margin-bottom: 5px
 				transition: .5s all
 			&_active
+				transform: translateY(25px)
 				span
 					margin-bottom: -1px
 					&:nth-child(1)
@@ -75,6 +76,8 @@
 		display: none
 	.promo_catalog__wrapper
 		display: none
+	.category__items
+		display: none
 @media only screen and (max-width: 768px)
 	.subheader
 		background-color: #1e1e1e
@@ -89,18 +92,7 @@
 			padding: clamp(10px, 1vw, 20px)
 			border-radius: 15px
 			background-color: #c9c9c9
-	.catalog_block .col-auto .catalog_content .catalog-item
-		.catalog-item__footer .catalog-item__prices
-			.catalog-item__price
-				font-size: 40px
-			.catalog-item__old-price
-				font-size: 32px
-		.catalog-item__subtitle
-			font-size: 22px
-		.catalog-item__img
-			height: 600px
-		.catalog-item__link, .catalog-item__footer .catalog-item__btn
-			font-size: 22px
+
 @media screen and (max-height: 450px)
 //main.css	
 	.overlay_profile

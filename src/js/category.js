@@ -1,158 +1,188 @@
-// Category
-const category = {
-    1:["Струнные инструменты"],
-    2:["Духовые инструменты"],
-    3:["Ударные инструменты"],
-    4:["Клавишные инструменты"],
-    5:["Звук и аудио"],
-    6:["Аксессуары и оборудование"],
-    7:["Торговое оборудование"]
-}
+// Импорт модулей относительно текущего JavaScript-файла
+import { displayOptions } from './modules/items/searchItems.mjs';
+import { loadData, showCategories, filterData, updateItemsDisplay, addSortEventListeners, handleCategoryClicks, dropdownItemCategory, dropdownSubCategory, dropdownCategory } from './modules/items/filterItems.mjs';
+import { myTopnav } from './modules/header/nav.mjs';
 
-const subcategories = {
-    1: ["Гитары", "Народные струнные инструменты", "Смычковые инструменты", "Арфы и акссесуары"],
-    2: ["Духовые инструменты"],
-    3: ["Ударные инструменты", "перкуссия"],
-    4: ["Аккордеоны, баяны", "Клавишные"],
-    5: ["Звуковое оборудование", "Микрофоны и аксессуары", "Коммутация"],
-    6: ["Тюнеры, метрономы, камертоны", "Аксессуары", "Ноты, самоучители"],
-    7: ["Торговое оборудование"]
-};
+// Pagination
+// Глобальные переменные для хранения выбранных категорий
+const CategoryDropdown = document.querySelector('#category_menu__profiles__CategoryText');
+const SubCategoryDropdown = document.querySelector('#category_menu__profiles__SubCategoryText');
+const SubSubCategoryDropdown = document.querySelector('#category_menu__profiles__subSubCategoryText');
 
-const subSubcategories = {
-    1: {
-        1: ["Акустические гитары", "Акустический бас", "Бас-гитары", "Классические гитары", "Электрогитары"],
-        2: ["Балалайки, аксессуары", "Банджо, аксессуары", "Бузуки, аксессуары", "Варганы", "Гусли, аксессуары", "Домры, аксессуары", "Кобза", "Мандола", "Мандолины, аксессуары", "Псалтерионы", "Укулеле, аксессуары", "Цимбалы"],
-        3: ["Аксессуары для смычковых", "Альты, аксессуары", "Виолончели, аксессуары", "Контрабасы, аксессуары", "Скрипки, аксессуары"],
-        4: ["Струны для арфы"]
-    },
-    2: {
-        1: ["Аксессуары для духовых", "Баритоны, аксессуары", "Блок-флейты, аксессуары", "Валторны, аксессуары", "Гобои, аксессуары", "Губные Гармошки, аксессуары", "Казу", "Кларнеты, аксессуары", "Корнеты, аксессуары", "Мелодики, кларины", "Пан-флейты", "Ремни для духовых инструментов", "Рожки, аксессуары", "Саксофоны, аксессуары", "Стойки для духовых", "Тенора, аксессуары", "Тромбоны, аксессуары", "Трубы, аксессуары", "Тубы, аксессуары", "Фаготы, аксессуары", "Флейты, аксессуары", "Цуг-флейты, Окарины, Свистки"],
-    },
-    3: {
-        1: ["Аксессуары для ударных", "Барабанные палочки, аксессуары", "Гонги, аксессуары", "Детские барабаны", "Малые барабаны", "Маршевые инструменты", "Пластики для барабанов", "Табуреты для ударника", "Тарелки", "Тренировочные барабаны, пэды", "Ударные установки", "Чехлы для барабанов и тарелок", "Щетки и рюты", "Электронные барабаны"],
-        2: ["Агого", "Блоки", "Бонги", "Вибраслэп", "Гуиро", "Джембе", "Кабасы", "Кастаньеты", "Ковбелы", "Колокольчики", "Конги", "Ксилофоны", "Маракасы и шейкеры", "Металлофоны", "Наборы перкуссии", "Тамбурины", "Тон-блоки, Коробочки", "Треугольники", "Трещотки, кокирико", "Чехлы для перкуссии", "Чимесы"]
-    },
-    4: {
-        1: ["Аккордеоны", "Баяны, кнопочные аккордеоны", "Концертины", "Ремни для баянов и аккордеонов", "Чехлы для баянов и аккордеонов"], 
-        2: ["Аксессуары для клавишных", "Банкетки", "Синтезаторы", "Стойки для клавишных", "Стулья", "Чехлы и накидки для клавишных"]
-    },
-    5: {
-        1: ["Акустические системы", "Кейсы, рэки, чехлы", "Комплекты акустических систем", "Микшерные пульты", "Обработка звука", "Сабвуферы", "Стойки под акустику", "Усилители мощности"], 
-        2: ["Ветрозащиты", "Держатели для микрофона", "Микрофонные стойки", "Микрофоны проводные"], 
-        3: ["Кабель в бобинах", "Шнуры соединительные"]
-    },
-    6: {
-        1: ["Камертоны", "Метрономы", "Метротюнеры", "Тюнеры"], 
-        2: ["Дирижерские палочки", "Источники питания", "Средства для ухода", "Стойки, подставки", "Тренажеры", "Чехлы, ремни"], 
-        3:["Вокальная музыка", "Диски CD DVD", "Книги", "Ноты для духовых инструментов", "Ноты для клавишных инструментов", "Ноты для народных инструментов", "Ноты для струнных инструментов", "Ноты для ударных инструментов", "Папки для нот", "Популярная музыка", "Справочно-энциклопедические издания", "Учебники"]
-    },
-    7: {
-        1: ["Торговое оборудование", "Витрины", "Стойки", "Каталоги"]
-    }
-};
-const dropdown = document.querySelector("#category_menu__profiles__CategoryText");
-dropdown.addEventListener("click",function () {
-    const categoryDropdown = document.querySelector("#categoryDropdown");
-    categoryDropdown.classList.toggle("show");
-    document.querySelector("#subCategoryDropdown").classList.remove("show");
-    document.querySelector("#subSubCategoryDropdown").classList.remove("show");
-    const existingLinks = categoryDropdown.querySelectorAll("a").length;
-
-    if (existingLinks !== Object.keys(category).length) {
-        categoryDropdown.innerHTML = '';
-
-        for (let key in category) {
-            const a = document.createElement("a");
-            a.href = '#';
-            a.textContent = category[key][0];
-            categoryDropdown.appendChild(a);
-            a.addEventListener("click", function(event) {
-                const selectedCategory = parseInt(event.target.dataset.category);
-                dropdown.textContent = event.target.textContent;
-                updateSubcategories(selectedCategory);
-                categoryDropdown.classList.remove("show");
-            });
-            a.dataset.category = key;
+//search
+const instruments = [];
+const search = document.querySelector('.search');
+const searchOptions = document.querySelector('.options');
+const formSearch = document.querySelector('.promo_search__form')
+const searchIcon = formSearch.querySelector('i');
+let dataLoaded = false; // Флаг для отслеживания загрузки данных
+async function fetchData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Ошибка HTTP: ' + response.status);
         }
+        const data = await response.json();
+        instruments.push(...data);
+        console.log("Данные успешно загружены:", instruments);
+        dataLoaded = true;
+    } catch (error) {
+        console.error('Произошла ошибка при загрузке данных:', error);
+    }
+}
+function handleSearch() {
+    const value = search.value.trim();
+    if (value) {
+        const url = `http://localhost:8080/search?text=${encodeURIComponent(value)}`;
+        window.open(url, '_blank');
+    }
+}
+search.addEventListener('input', function () {
+    const value = this.value;
+    displayOptions(value, instruments);
+});
+search.addEventListener('click', function () {
+    if (!dataLoaded) {
+        fetchData('http://localhost:8080/getProductsData');
     }
 });
-const subCategoryDropdown = document.querySelector("#category_menu__profiles__SubCategoryText");
-
-function updateSubcategories(selectedCategory) {
-    const SubcategoryDropdown = document.querySelector("#subCategoryDropdown");
-    const existingLinks = SubcategoryDropdown.querySelectorAll("a").length;
-    SubcategoryDropdown.classList.toggle("show");
-    if (existingLinks !== subcategories[selectedCategory].length) {
-        SubcategoryDropdown.innerHTML = '';
-
-        subcategories[selectedCategory].forEach((subcategory, index) => {
-            const a = document.createElement("a");
-            a.textContent = subcategory;
-            SubcategoryDropdown.appendChild(a);
-            a.addEventListener("click", function(event) {
-                subCategoryDropdown.textContent = event.target.textContent;
-                SubcategoryDropdown.classList.remove("show");
-                updateSubSubcategories(selectedCategory, index + 1);
-            });
-        });
+document.addEventListener('click', function (event) {
+    const isClickInsideformSearch = formSearch.contains(event.target)
+    if (!isClickInsideformSearch) {
+        search.value = '';
+        searchOptions.innerHTML = '';
+        searchOptions.style.backgroundColor = 'transparent';
     }
-}
-const subSubCategoryDropdown = document.querySelector("#category_menu__profiles__subSubCategoryText");
-function updateSubSubcategories(selectedCategory, selectedSubCategory) {
-    const SubSubcategoryDropdown = document.querySelector("#subSubCategoryDropdown");
-    const existingLinks = SubSubcategoryDropdown.querySelectorAll("a").length;
-    SubSubcategoryDropdown.classList.toggle("show");
-    if (existingLinks !== subSubcategories[selectedCategory][selectedSubCategory].length) {
-        SubSubcategoryDropdown.innerHTML = '';
-
-        subSubcategories[selectedCategory][selectedSubCategory].forEach(subSubcategory => {
-            const a = document.createElement("a");
-            a.textContent = subSubcategory;
-            SubSubcategoryDropdown.appendChild(a);
-            a.addEventListener("click", function(event) {
-                subSubCategoryDropdown.textContent = event.target.textContent;
-                SubSubcategoryDropdown.classList.remove("show");
-            });
-        });
+});
+search.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        handleSearch();
     }
-}
-subCategoryDropdown.addEventListener("click",function(){
-    document.querySelector("#subCategoryDropdown").classList.toggle("show");
-    document.querySelector("#categoryDropdown").classList.remove("show");
-    document.querySelector("#subSubCategoryDropdown").classList.remove("show");
-})
-subSubCategoryDropdown.addEventListener("click",function(){
-    document.querySelector("#subCategoryDropdown").classList.remove("show");
-    document.querySelector("#categoryDropdown").classList.remove("show");
-    document.querySelector("#subSubCategoryDropdown").classList.toggle("show");
-})
+});
+searchIcon.addEventListener('click', handleSearch);
 
-//file
-document.querySelectorAll('.input-file input[type=file]').forEach(input => {
-    input.addEventListener('change', function() {
-        let file = this.files[0];
-        this.closest('.input-file').querySelector('.input-file-text').innerHTML = file.name;
+// Получаем параметры URL
+const urlParams = new URLSearchParams(window.location.search);
+const searchToText = urlParams.get('text');
+const searchToProduct = urlParams.get('search');
+const categorylink = urlParams.get('category');
+const subcategorylink = urlParams.get('subcategory');
+const subsubcategorylink = urlParams.get('subsubcategory');
+// Получаем кнопки сортировки
+const asc = document.getElementById('sort-asc');
+const desc = document.getElementById('sort-desc');
 
-        let formData = new FormData();
-        formData.append('file', file);
+// Основная функция
+async function main() {
+    try {
+        const data = await loadData('http://localhost:8080/getProductsData');
+        showCategories(data);
+        if (categorylink) {
+            CategoryDropdown.textContent = categorylink;
+            dropdownCategory(data, categorylink);
+        }
+        if (subcategorylink) {
+            SubCategoryDropdown.textContent = subcategorylink;
+            dropdownSubCategory(data, categorylink, subcategorylink);
+        }
+        if (subsubcategorylink) {
+            SubSubCategoryDropdown.textContent = subsubcategorylink;
+            dropdownItemCategory(data, categorylink, subcategorylink, subsubcategorylink);
+        }
+        document.querySelector("#categoryDropdown").classList.remove("show");
+        document.querySelector("#subCategoryDropdown").classList.remove("show");
+        document.querySelector("#subSubCategoryDropdown").classList.remove("show");
+        
+        let filteredItems = filterData(data, categorylink, subcategorylink, subsubcategorylink, searchToText, searchToProduct);
+        addSortEventListeners(filteredItems);
+        updateItemsDisplay(filteredItems);
 
-        fetch('http://localhost:8080/fileExcel', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
+        CategoryDropdown.addEventListener('click', function () {
+            document.querySelector("#categoryDropdown").classList.toggle("show");
+        });
+        SubCategoryDropdown.addEventListener('click', function () {
+            document.querySelector("#subCategoryDropdown").classList.toggle("show");
+        });
+        SubSubCategoryDropdown.addEventListener('click', function () {
+            document.querySelector("#subSubCategoryDropdown").classList.toggle("show");
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target === asc || event.target === desc) {
+                event.preventDefault();
+            } else {
+                handleCategoryClicks(event, filteredItems);
             }
-            return response.text();
-        })
-        .then(data => {
-            console.log(data); 
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
         });
-    });
-});
+    } catch (error) {
+        console.error('Произошла ошибка:', error);
+    }
+}
+main();
 
+async function handleSubmitButtonClick(event) {
+    let fileInput = document.getElementById('fileInput');
+    let file = fileInput.files[0];
+    if (!file) {
+        console.error('Файл не выбран.');
+        return;
+    }
+
+    // Создаем объект FormData и добавляем в него файл
+    let formData = new FormData();
+    formData.append('file', file);
+
+    // Создаем WebSocket-подключение к серверу
+    const ws = new WebSocket('ws://localhost:8080/progress');
+    ws.onopen = function() {
+        console.log('WebSocket подключение установлено.');
+    };
+    ws.onclose = function() {
+        console.log('WebSocket подключение закрыто.');
+    };
+    ws.onerror = function(error) {
+        console.error('WebSocket ошибка:', error);
+    };
+
+    // Обновляем прогресс при получении сообщения от сервера
+    ws.onmessage = function(event) {
+        let progress = JSON.parse(event.data).progress;
+        let progressBar = document.getElementById('fileUploadProgress');
+        progressBar.value = progress;
+    };
+
+    // Создаем объект XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+
+    // Устанавливаем обработчик события успешной загрузки файла на сервер
+    xhr.addEventListener('load', function(event) {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            console.log('Файл успешно загружен на сервер.');
+            ws.close(); // Закрываем WebSocket-подключение после завершения загрузки файла
+        } else {
+            console.error('Произошла ошибка при загрузке файла на сервер.');
+        }
+    });
+
+    // Отправляем запрос на сервер
+    xhr.open('POST', 'http://localhost:8080/fileExcel');
+
+    // Получаем размер файла и устанавливаем заголовок Content-Length
+    xhr.setRequestHeader('Content-Length', file.size);
+
+    // Отправляем файл на сервер
+    xhr.send(formData);
+}
+
+
+document.querySelector('#fileInput').addEventListener('change', function (event) {
+    let file = event.target.files[0];
+    event.target.closest('.input-file').querySelector('.input-file-text').innerHTML = file.name;
+});
+// Назначаем обработчик события нажатия кнопки "Отправить"
+document.querySelector('.xlsxFileSubmit').addEventListener('click', handleSubmitButtonClick);
+
+
+
+
+myTopnav();

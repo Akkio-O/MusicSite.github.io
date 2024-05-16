@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <title>Музыкальный магазин</title>
+    <title>Главная страница MusInstrument</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-language" content="ru">
@@ -29,19 +29,18 @@
                         <div class="icons_messengers">
                             <a href=""><span class="icon-youtube"></span></a>
                             <a href=""><span class="icon-whatsapp"></span></a>
-                            <a href=""><span class="icon-vk"></span</a>
-                                    <a href=""><span class="icon-telegram"></span></a>
+                            <a href=""><span class="icon-vk"></span></a>
+                            <a href=""><span class="icon-telegram"></span></a>
                         </div>
                     </div>
                     <div class="col-lg-4 topnav_block">
                         <div class="topnav" id="myTopnav">
-                            <a href="#home" class="active">Главная</a>
-                            <a href="./category.html" target="_blank">Каталог</a>
-                            <a href="#contact">О нас</a>
-                            <a href="#about">Документы</a>
+                            <a href="./index" class="active">Главная</a>
+                            <a href="./category">Каталог</a>
+                            <a href="./about">О нас</a>
                             <a class="phone" href="tel:8(812)6110097"><span class="icon-phone"></span>+7 812
-                                611-00-97</a>
-                            <div class="hamburger icon" onclick="responsive()">
+                                611-00-97</a>2
+                            <div class="hamburger icon">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -51,14 +50,14 @@
                     <div class="menu_btn__block menu_btn col-auto col-lg-4">
                         <div class="menu_btn__cart">
                             <span data-modal='cart' class="modal-trigger icon-cart">
-                                <span class="count">0</span>
+                                <span class="count__cart">0</span>
                             </span>
                         </div>
                         <div class="profile_block">
                             <div class="reg_login_btn">
-                                <button data-modal='reg' class="modal-trigger button"><span>Регистрация </span></button>
                                 <button data-modal='log' class="modal-trigger button"><span>Вход</span></button>
                             </div>
+                            <div class="profile"></div>
                         </div>
                     </div>
                 </div>
@@ -79,13 +78,17 @@
     <section class="promo container">
         <div class="row justify-content-center">
             <div class="promo_catalog__wrapper col-auto col-lg-4">
+                <!-- <iframe
+                src="about.html"
+                frameborder="0" allowfullscreen="true" width="640px" height="600px"
+                style="display: block;"></iframe> -->
                 <div class="FrameCategory">
-                    <ul class="FrameCategory_list">
+                    <ul class="FrameCategory_list" id="categories-list">
                         <li class="positionBlock catalog_title">
                             <h2>Каталог</h2>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu1)" onmouseout="removeMenu(menu1)">СТРУННЫЕ
+                        <!-- <li class="positionBlock">
+                            <button>СТРУННЫЕ
                                 ИНСТРУМЕНТЫ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu1">
                                 <ul>
@@ -145,8 +148,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu2)" onmouseout="removeMenu(menu2)">ДУХОВЫЕ
+                        <li class="positionBlock">
+                            <button>ДУХОВЫЕ
                                 ИНСТРУМЕНТЫ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu2">
                                 <ul>
@@ -182,8 +185,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu3)" onmouseout="removeMenu(menu3)">УДАРНЫЕ
+                        <li class="positionBlock">
+                            <button>УДАРНЫЕ
                                 ИНСТРУМЕНТЫ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu3">
                                 <ul>
@@ -240,8 +243,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu4)" onmouseout="removeMenu(menu4)">КЛАВИШНЫЕ
+                        <li class="positionBlock">
+                            <button>КЛАВИШНЫЕ
                                 ИНСТРУМЕНТЫ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu4">
                                 <ul>
@@ -273,8 +276,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu5)" onmouseout="removeMenu(menu5)">ЗВУК И АУДИО</button>
+                        <li class="positionBlock">
+                            <button>ЗВУК И АУДИО</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu5">
                                 <ul>
                                     <li>
@@ -317,8 +320,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu6)" onmouseout="removeMenu(menu6)">АКСЕССУАРЫ И
+                        <li class="positionBlock">
+                            <button>АКСЕССУАРЫ И
                                 ОБОРУДОВАНИЕ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu6">
                                 <ul>
@@ -370,8 +373,8 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="positionBlock" onmouseover="switchColor()" onmouseout="ReswitchColor()">
-                            <button onmouseover="toggleMenu(menu7)" onmouseout="removeMenu(menu7)">ТОРГОВОЕ
+                        <li class="positionBlock">
+                            <button>ТОРГОВОЕ
                                 ОБОРУДОВАНИЕ</button>
                             <div class="ContextMenu ContextMenuSupport" id="menu7">
                                 <ul>
@@ -388,19 +391,24 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
+                    </ul>
+                    <ul class="FrameCategory_Context" id="categories-context">
                     </ul>
                 </div>
             </div>
             <div class="promo_search_img col-auto col-lg-8">
                 <div class="col-auto promo_seacrh__conent">
-                    <div class="">
-                        <div class="promo_search">
-                            <form action="/action_page.php" class="promo_search__form">
-                                <input type="text" placeholder="Search.." name="search">
-                                <button class="promo_search__btn"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                    <div class="promo_search">
+                        <form class="promo_search__form">
+                            <div class="search_block">
+                                <input type="text" placeholder="Search.." name="search" class="search">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <ul class="options">
+                                <!--Поиск инструментов-->
+                            </ul>
+                        </form>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -409,12 +417,10 @@
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
                         </div>
-                        <div class="">
-                            <div class="carousel_inner">
-                                <div><img src="img/carousel/Promo_1.jpg" alt="slide"></div>
-                                <div><img src="img/carousel/Promo_2.jpg" alt="slide"></div>
-                                <div><img src="img/carousel/Promo_3.jpg" alt="slide"></div>
-                            </div>
+                        <div class="carousel_inner">
+                            <div><img src="img/carousel/Promo_1.jpg" alt="slide"></div>
+                            <div><img src="img/carousel/Promo_2.jpg" alt="slide"></div>
+                            <div><img src="img/carousel/Promo_3.jpg" alt="slide"></div>
                         </div>
                     </div>
                 </div>
@@ -458,81 +464,18 @@
                 <h2>Рекомендации</h2>
             </div>
             <div class="recommendation_btns" id="myBtnContainer">
-                <button class="btn_filter active" onclick="filterSelection('all')"> Все</button>
-                <button class="btn_filter" onclick="filterSelection('guitar')">НОВИНКИ</button>
-                <button class="btn_filter" onclick="filterSelection('electro')">СКИДКИ</button>
-                <button class="btn_filter" onclick="filterSelection('flex')">ПРЕДЛОЖЕНИЯ</button>
+                <button id="default" class="btn_filter active" data-default> Все</button>
+                <button id="new" class="btn_filter" data-new>Новинки</button>
+                <button id="discount" class="btn_filter" data-discount>Скидки</button>
+                <!-- <button id="newTime" class="btn_filter" data-newTime>Предложения</button> -->
+                <button id="sort-asc" class="btn_filter" data-asc>&#8381;<span
+                        class="icon-arrow_drop_up"></span></button>
+                <button id="sort-desc" class="btn_filter" data-desc>&#8381;<span
+                        class="icon-arrow_drop_down"></span></button>
             </div>
-            <div class="row justify-content-center catalog_block">
-                <div class="col-auto col-lg-4 filterDiv electro">
-                    <div class="catalog_content text-center">
-                        <div class="catalog-item">
-                            <div class="catalog-item__wrapper">
-                                <div class="catalog-item__content catalog-item__content_active">
-                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                </div>
-                            </div>
-                            <div class="catalog-item__footer_block">
-                                <hr>
-                                <div class="catalog-item__footer">
-                                    <div class="catalog-item__prices">
-                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                        <div class="catalog-item__price">7 000 ₽</div>
-                                    </div>
-                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                </div>
-                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto col-lg-4 filterDiv electro">
-                    <div class="catalog_content text-center">
-                        <div class="catalog-item">
-                            <div class="catalog-item__wrapper">
-                                <div class="catalog-item__content catalog-item__content_active">
-                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                </div>
-                            </div>
-                            <div class="catalog-item__footer_block">
-                                <hr>
-                                <div class="catalog-item__footer">
-                                    <div class="catalog-item__prices">
-                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                        <div class="catalog-item__price">7 000 ₽</div>
-                                    </div>
-                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                </div>
-                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto col-lg-4 filterDiv electro">
-                    <div class="catalog_content text-center">
-                        <div class="catalog-item">
-                            <div class="catalog-item__wrapper">
-                                <div class="catalog-item__content catalog-item__content_active">
-                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                </div>
-                            </div>
-                            <div class="catalog-item__footer_block">
-                                <hr>
-                                <div class="catalog-item__footer">
-                                    <div class="catalog-item__prices">
-                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                        <div class="catalog-item__price">7 000 ₽</div>
-                                    </div>
-                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                </div>
-                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row justify-content-center catalog_block container">
+                <!-- Товары -->
+                <ul id="pagination" class="pagination-container"></ul>
             </div>
         </div>
     </section>
@@ -586,7 +529,7 @@
         <div class="modal" id="reg">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Регистрация</div>
-            <form action="/reg" id="feed_form" class="feed_form" method="">
+            <form action="/reg" id="reg" class="feed_form" method="post">
                 <input name="firstName" type="text" placeholder="Ваше Имя">
                 <input name="lastName" type="text" placeholder="Ваша Фамилия">
                 <input name="email" type="email" placeholder="Ваш E-mail">
@@ -599,21 +542,30 @@
         <div class="modal" id="log">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Вход</div>
-            <form action="/log" class="feed_form" method="">
-                <input name="email" type="text" placeholder="Ваш Логин">
-                <input name="password" type="password" placeholder="Ваш Пароль">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember">
-                    <span>Запомнить</span>
-                </label>
+            <form action="/log" class="log" method="get">
+                <div class="row">
+                    <div class="col-auto">
+                        <input name="email" type="text" placeholder="Ваш Логин">
+                        <input name="password" type="password" placeholder="Ваш Пароль">
+                    </div>
+                    <div class="col-auto">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Запомнить</span>
+                        </label>
+                    </div>
+                </div>
                 <button class="feed_form_btn feed_form_btn_submit">Авторизоваться</button>
+                <button data-modal='reg' class="modal-trigger feed_form_btn"><span>Зарегистрироваться</span></button>
             </form>
         </div>
         <div class="modal modal_cart" id="cart">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Ваша корзина</div>
             <hr>
-            <div class="modal_subtitle modal_subtitle__visible">Пока ничего не выбрано<hr></div>
+            <div class="modal_subtitle modal_subtitle__visible">Пока ничего не выбрано
+                <hr>
+            </div>
             <div class="easynetshop-goods">
                 <div class="easynetshop-row easynetshop-header">
                     <div class="easynetshop-2">Товар</div>
@@ -662,18 +614,20 @@
                                     <td class="easynetshop-total-valute">руб.</td>
                                 </tr>
                             </tbody>
-                            
+
                         </table>
                     </div>
                 </div>
                 <br>
             </div>
             <div class="row">
-                <div class="col btn_back"><button class="feed_form_btn feed_form_btn_submit">Вернуться на сайт</button></div>
-                <div class="col btn_buy__decoration" data-modal='finally_buy__items'><button class="feed_form_btn feed_form_btn_submit">Перейти к оформлению</button></div>
+                <div class="col btn_back"><button class="feed_form_btn feed_form_btn_submit">Вернуться на сайт</button>
+                </div>
+                <div class="col btn_buy__decoration" data-modal='finally_buy__items'><button
+                        class="feed_form_btn feed_form_btn_submit">Перейти к оформлению</button></div>
             </div>
-                
-                
+
+
         </div>
         <div class="modal" id="finally_buy__items">
             <div class="modal_close">&times;</div>
@@ -685,29 +639,36 @@
                         <h3>Способ получения:</h3>
                         <div class="deliveryOptions" id="">
                             <div class="row justify-content-center">
-                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('all')">Самовывоз</button></div>
-                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('guitar')">Курьером</button></div>
-                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">Почтой РФ</button></div>
-                            </div>                   
+                                <div class="col"><button class="feed_form_btn"
+                                        onclick="filterSelection('all')">Самовывоз</button></div>
+                                <div class="col"><button class="feed_form_btn"
+                                        onclick="filterSelection('guitar')">Курьером</button></div>
+                                <div class="col"><button class="feed_form_btn"
+                                        onclick="filterSelection('electro')">Почтой РФ</button></div>
+                            </div>
                         </div>
                         <div class="deliveryOptions" id="">
                             <div class="row justify-content-center">
-                                <div class="col"><button class="feed_form_btn active" onclick="filterSelection('guitar')">В магазине</button></div>
-                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">В пункте выдачи</button></div>
-                            </div>                   
+                                <div class="col"><button class="feed_form_btn active"
+                                        onclick="filterSelection('guitar')">В магазине</button></div>
+                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">В
+                                        пункте выдачи</button></div>
+                            </div>
                         </div>
                         <div class="row deliveryInfo">
-                            <div class="col-lg-6"><h3>Информация о магазине:</h3>
+                            <div class="col-lg-6">
+                                <h3>Информация о магазине:</h3>
                                 <p>Название магазина: Примерный магазин</p>
                                 <p>Адрес: Улица Примерная, 123</p>
                                 <p>Время работы: Пн-Пт 9:00-18:00</p>
-                                <div class="col"><button class="deliveryInfo_btn feed_form_btn" onclick="filterSelection('electro')">Выбрать другой магазин</button></div>
+                                <div class="col"><button class="deliveryInfo_btn feed_form_btn"
+                                        onclick="filterSelection('electro')">Выбрать другой магазин</button></div>
                             </div>
                             <div class="col-lg-6 deliveryInfo_map">
                                 <iframe
-                            src="https://yandex.ru/map-widget/v1/?um=constructor%3A3178074ebfc956b52c0e55efe35e113fcb30874c9e87aef032fb6ed804bc7451&amp;source=constructor"
-                            frameborder="0" allowfullscreen="true" width="100%" height="100%"
-                            style="display: block;"></iframe>
+                                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A3178074ebfc956b52c0e55efe35e113fcb30874c9e87aef032fb6ed804bc7451&amp;source=constructor"
+                                    frameborder="0" allowfullscreen="true" width="100%" height="100%"
+                                    style="display: block;"></iframe>
                             </div>
                         </div>
                     </div>
@@ -723,7 +684,8 @@
                                     <div class="payment_icons">
                                         <span class="icon-cc-mastercard"></span>
                                         <span class="icon-cc-visa"></span>
-                                        <span class="icon-national-payment-system-mir"><span class="path1"></span><span class="path2"></span></span>
+                                        <span class="icon-national-payment-system-mir"><span class="path1"></span><span
+                                                class="path2"></span></span>
                                     </div>
                                 </a>
                             </div>
@@ -734,7 +696,17 @@
                                         <span>Оплатить через систему быстрых палетежй сейчас</span>
                                     </div>
                                     <div class="payment_icons">
-                                        <span class="icon-sbp"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span></span>
+                                        <span class="icon-sbp"><span class="path1"></span><span
+                                                class="path2"></span><span class="path3"></span><span
+                                                class="path4"></span><span class="path5"></span><span
+                                                class="path6"></span><span class="path7"></span><span
+                                                class="path8"></span><span class="path9"></span><span
+                                                class="path10"></span><span class="path11"></span><span
+                                                class="path12"></span><span class="path13"></span><span
+                                                class="path14"></span><span class="path15"></span><span
+                                                class="path16"></span><span class="path17"></span><span
+                                                class="path18"></span><span class="path19"></span><span
+                                                class="path20"></span><span class="path21"></span></span>
                                     </div>
                                 </a>
                             </div>
@@ -749,7 +721,7 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>                   
+                        </div>
                     </div>
                     <div>
                         <h3>(Если не зарегистрированный пользователь)Получатель:</h3>
@@ -805,9 +777,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/imask"></script>
-    <script src="js/buy_items.js"></script>
+    <script src="js/carousel/carousel.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/JQscript.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/base/counter.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script src="js/JQscript.js" defer></script>
 </body>
+
 </html>

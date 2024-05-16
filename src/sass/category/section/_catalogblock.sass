@@ -1,65 +1,201 @@
 .category
-	.container-list
-		margin: 15px
+	.catalog_list
+		display: flex
+		justify-content: center
+		align-items: flex-start
+		gap: 5px
+
+.catalog_block
+	align-content: center
+	.col-auto
+		margin: 1dvh 0 1dvh 0
+		.catalog_content
+			display: grid
+			align-content: stretch
+			border: 2px solid $mainColor
+			border-radius: 10px
+			padding: 20px 20px 26px 20px
+			width: 330px
+			min-height: 440px
+			margin-right: auto
+			margin-left: auto
+			.catalog-item
+				display: flex
+				flex-direction: column
+				justify-content: space-between
+				&__wrapper
+					text-align: center
+					.catalog-item__content
+						transition: 2s display 1s opacity
+						transition: 0.5s all
+						margin-right: 0px
+
+					.catalog-item__back
+						position: absolute
+						bottom: 0
+						left: 50%
+						transform: translateX(calc(-50% - 12px))
+						font-weight: 500
+						text-decoration: underline
+						text-decoration: uppercase
+						&:hover
+							color: $mainColor
+
+					.catalog-item__text
+						text-align: justify
+						list-style-type: none
+						width: 100%
+						margin-left: 20px
+						padding-right: 20px
+						padding-left: 19px
+						margin-bottom: 0
+						transform: translateX(0%)
+						transition: 0.5s all
+						li
+							color: #555555
+							font-size: 14px
+							font-weight: 300
+							margin-bottom: 20px
+							&::before
+								content: ''
+								position: absolute
+								width: 5px
+								height: 5px
+								background-color: #d62929
+								left: 4px
+
+						&_active
+							transform: translateX(-100%)
+							opacity: 1
+				&__footer_block
+					align-content: flex-end
+					.catalog-item__subtitle
+						font-size: 16px
+						text-align: center
+					.catalog-item__footer
+						display: flex
+						justify-content: space-between
+						align-items: center
+						.catalog-item__prices
+							position: relative
+							.catalog-item__old-price
+								display: inline
+								color: #555555
+								font-size: 16px
+								font-weight: 300
+								text-decoration: line-through
+							.catalog-item__price
+								color: #050505
+								font-size: 18px
+								font-weight: 700
+							.discount
+								position: absolute
+								top: -10px
+						.catalog-item__btn
+							@include btn
+				.catalog-item__img
+					max-width: 100%
+					height: 400px
+					border-radius: 10px
+				.catalog-item__link
+					@include btn
+					width: 100%
+					a
+						text-decoration: none
+						color: inherit
+				.catalog-item__title-block
+					text-align: center
+					background-color: #1e1e1e
+					border-radius: 10px
+					padding: 5px
+					margin-top: 20px
+					font-weight: 700
+					color: #f0ecec
+				.catalog-item__descr
+					margin-top: 16px
+					font-size: 14px
+					font-weight: 300
+				hr
+					background-color: #e8e8e8
+					border-bottom: none
+					margin: 19px 0 21px 0
 
 .category__items
-	margin: 15px 0 15px 3vw
-	border-radius: 12px
-	width: 94%
-	max-width: 400px
+	margin-top: 1dvh
+.catalog-item__items
+	border-radius: 1dvh
+	font-size: 1.1rem
+	background-color: #c9c9c9
+	text-align: center
+	display: flex
+	gap: 5px
+	.control
+		width: 25px
+		background-color: #1e1e1e
+		color: $mainColor
+		cursor: pointer
+		user-select: none
+		border-radius: 1dvh
+		transition: 0.3s all
+		&:hover
+			background-color: $mainColor
+			color: #1e1e1e
+.show
+	display: block
+.hide
+	display: none
+	visibility: hidden
+	height: 0
 
-.category_menu
-	--start: 15%
-	height: 130px
-	background-image: repeating-radial-gradient(circle at var(--start), transparent 0%, transparent 10%, rgba(231, 86, 53, .33) 10%, rgba(231, 86, 53, .33) 17%), linear-gradient(to right, #ea7e67, #ea7e67)
-	color: #fff
-	position: relative
-	border-radius: 12px 12px 0 0
+.pagination-container
+	display: flex
+	align-items: center
+	justify-content: center
+	margin: 15px auto
 
-.category_logo__icon
-	fill: #fff
-	opacity: .35
-	width: 15dvh
-	position: absolute
-	top: 50%
-	left: var(--start)
-	transform: translate(-50%, -50%)
+.arrow\:text
+	display: block
+	vertical-align: middle
+	font-size: 13px
+	vertical-align: middle
 
-.category_block__title
-	position: absolute
-	z-index: 2
-	top: 50%
-	right: calc(var(--start) * .05)
-	transform: translateY(-50%)
-	text-transform: uppercase
-	margin: 0
-
-	& span
-		display: block
-
-	&--top
-		font-size: clamp(10px, 1vw, 20px)
-		font-weight: 700
-		letter-spacing: 6.5px
-
-	&--bottom
-		font-size: 13px
-		font-weight: 500
-		letter-spacing: 3.55px
-		opacity: .65
-		transform: translateY(-2px)
-
+#pagination
+	.pagination-number
+		--size: 32px
+		--margin: 6px
+		margin: 0 var(--margin)
+		border-radius: 6px
+		background: #202020
+		color: #ea7e67
+		max-width: auto
+		min-width: var(--size)
+		height: var(--size)
+		display: flex
+		align-items: center
+		justify-content: center
+		cursor: pointer
+		padding: 0 6px
+		transition: 0.3s all
+		&:hover
+			background: $mainColor
+			color: #1e1e1e
+	.active
+		background: $mainColor
+		color: #1e1e1e
 .category_menu__profiles
 	background-color: #1e1e1e
+	color: #c9c9c9
 	border-radius: 0 0 12px 12px
 	padding: 15px 15px 20px
 	display: grid
 	row-gap: 8px
 	text-align: center
-
+	.promo_seacrh__conent
+		color: #1e1e1e
+	hr
+		color: #1e1e1e
 	&_dropdown
 		display: inline-block
-		margin-right: 10px
 
 .dropbtn
 	background-color: #ea7e67
@@ -87,7 +223,7 @@
 		z-index: 1
 		cursor: pointer
 		a
-			color: black
+			color: black !important
 			padding: 12px 16px
 			text-decoration: none
 			display: block
@@ -103,7 +239,7 @@
 	visibility: hidden
 	height: 0
 
-.pagination\:container
+.pagination-container
 	display: flex
 	align-items: center
 	justify-content: center
@@ -115,51 +251,36 @@
 	font-size: 13px
 	vertical-align: middle
 
-.pagination\:number
-	--size: 32px
-	--margin: 6px
-	margin: 0 var(--margin)
-	border-radius: 6px
-	background: #202020
-	color: #ea7e67
-	max-width: auto
-	min-width: var(--size)
-	height: var(--size)
-	display: flex
-	align-items: center
-	justify-content: center
-	cursor: pointer
-	padding: 0 6px
-	transition: 0.3s all
-	&:hover
+#pagination
+	.pagination-number
+		--size: 32px
+		--margin: 6px
+		margin: 0 var(--margin)
+		border-radius: 6px
+		background: #202020
+		color: #ea7e67
+		max-width: auto
+		min-width: var(--size)
+		height: var(--size)
+		display: flex
+		align-items: center
+		justify-content: center
+		cursor: pointer
+		padding: 0 6px
+		transition: 0.3s all
+		&:hover
+			background: $mainColor
+			color: #1e1e1e
+	.active
 		background: $mainColor
 		color: #1e1e1e
-.pagination\:active
-	background: $mainColor
-	color: #1e1e1e
+
 .input-file
 	position: relative
 	display: inline-block
 
 	&-btn
-		position: relative
-		display: inline-block
-		cursor: pointer
-		outline: none
-		text-decoration: none
-		font-size: 14px
-		vertical-align: middle
-		color: rgb(255 255 255)
-		text-align: center
-		border-radius: 4px
-		background-color: $mainColor
-		line-height: 22px
-		height: 40px
-		padding: 10px 20px
-		box-sizing: border-box
-		border: none
-		margin: 0
-		transition: background-color 0.2s
+		@include btn
 
 	&-text
 		padding: 0 10px
@@ -185,3 +306,6 @@
 
 	& input[type=file]:disabled + &-btn
 		background-color: #eee
+
+.xlsxFileSubmit
+	@include btn

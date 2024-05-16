@@ -1,3 +1,17 @@
-@import 'styles'
+@mixin btn
+	border-radius: 4px
+	background-color: #ea7e67
+	border: none
+	color: #FFFFFF
+	text-align: center
+	font-size: clamp(0.7rem, 1vw, 1rem)
+	padding: 10px
+	width: clamp(100px, 6vw, 150px)
+	transition: all 0.5s
+	cursor: pointer
+	margin: 5px
+	&:hover
+		background-color: #e75635
+$mainColor: #ea7e67
 @import 'category/section/catalogblock'
 @import 'base/media'

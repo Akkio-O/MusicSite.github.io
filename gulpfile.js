@@ -3,12 +3,21 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync');
 const sass = require('gulp-sass')(require('sass'));
 const rename = require("gulp-rename");
-
+const connect = require('gulp-connect');
 // Static server
 gulp.task('server', function () {
-    browserSync.init({
-        server: {
-            baseDir: "src"
+    connect.server({
+        root: 'src',
+        livereload: true,
+        middleware: function (connect, opt) {
+            return [
+                (req, res, next) => {
+                    if (!req.url.includes('.')) {
+                        req.url = '/index.html';
+                    }
+                    return next();
+                }
+            ];
         }
     });
 });
@@ -33,7 +42,10 @@ gulp.task('styles', async function () {
 
 gulp.task('watch', function () {
     gulp.watch("src/sass/**/*.+(scss|sass)", gulp.parallel("styles"));
-    gulp.watch("src/*.html").on("change", browserSync.reload);
+    gulp.watch("src/*.html").on("change", gulp.series('reload'));
 });
-
+gulp.task('reload', function () {
+    return gulp.src('src/*.html')
+        .pipe(connect.reload());
+});
 gulp.task('default', gulp.parallel('watch', 'server', 'styles'));

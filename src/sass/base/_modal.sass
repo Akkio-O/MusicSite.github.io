@@ -1,13 +1,16 @@
 .checkbox
+	text-align: center
 	input
 		height: 40px
+		margin: 0 auto
+		width: 50%
 	span
 		display: block
+		margin: auto 0
 .feed_form
 	input
-		width: 100%
 		display: block
-		height: 50px
+		width: 100%
 		padding: 1dvh
 		border-radius: 5px
 		background-color: #ffffff
@@ -18,7 +21,6 @@
 	&_btn
 		@include btn
 		width: 100%
-		height: 5dvh
 .overlay
 	z-index: 2
 	display: none
@@ -30,7 +32,6 @@
 .modal
 	z-index: 1
 	position: absolute
-	width: 400px
 	top: 50%
 	left: 50%
 	transform: translate(-50%, -50%)
@@ -55,10 +56,15 @@
 		font-weight: 400
 		margin-bottom: 1dvh
 		text-align: center
+
 .modal_cart
 	width: 50%
+	overflow: auto
 	.modal_subtitle
 		text-align: justify
+	.easynetshop-itogo
+		display: flex
+		justify-content: end
 
 .modal_mini
 	min-height: 140px
@@ -73,6 +79,17 @@ label.error
 	color: black
 #reg, #log, #thanks, #cart, #finally_buy__items
 	display: none
+#log
+	.row
+		align-items: end
+		.col-auto
+			display: flex
+			flex-direction: column
+			flex-wrap: wrap
+			gap: 15px
+			margin-bottom: 2dvh
+	h3
+		text-align: center
 
 #finally_buy__items
 	overflow: auto

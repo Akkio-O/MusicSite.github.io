@@ -1,10 +1,18 @@
-.FrameCategory .FrameCategory_list
+.FrameCategory
+	display: flex
+	position: relative
+.FrameCategory_list
 	background-color: #333
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 	border-radius: 25px
 	position: relative
-	min-height: auto
+	height: 750px
+	overflow: auto
+	// min-height: auto
 	padding: 10px
+.FrameCategory_Context
+	position: absolute
+	right: 35px
 
 .FrameCategory ul button
 	color: #c9c9c9
@@ -20,22 +28,20 @@
 	overflow: hidden
 	transition: color 1s
 	margin-bottom: 10px
-
-.FrameCategory ul button:hover
-	color: #1E1E1E
-
-.FrameCategory ul button::before
-	content: ''
-	position: absolute
-	left: -50px
-	width: 0
-	height: 100%
-	background-color: #c9c9c9
-	color: #1E1E1E
-	z-index: -1
-	transition: width 1s
-	bottom: 0px
-	top: 0px
+	&:hover
+		color: #1E1E1E
+	&::before
+		content: ''
+		position: absolute
+		left: -50px
+		width: 0
+		height: 100%
+		background-color: #c9c9c9
+		color: #1E1E1E
+		z-index: -1
+		transition: width 1s
+		bottom: 0px
+		top: 0px
 
 .FrameCategory ul button:hover::before,
 .FrameCategory ul button:hover~.ContextMenu::before,
@@ -63,7 +69,7 @@
 	font-size: x-large
 	list-style: none
 	margin-left: 1px
-	width: 200%
+	width: 40vw
 	left: 100%
 	margin: 5px 0
 	margin-left: 10px
@@ -94,8 +100,8 @@
 
 .ContextMenu.active
 	opacity: 1
-	z-index: 2
-	width: 200%
+	z-index: 3
+	width: 40vw
 	transform: rotateZ(0deg)
 
 .ContextMenu ul li a
@@ -110,7 +116,10 @@
 	font-family: Lekton
 	font-weight: 400
 	padding: 10px
-
+	transition: 0.5s all
+	&:hover
+		background-color: #1e1e1e
+		color: #c9c9c9
 .ContextMenu ul li
 	position: relative
 	padding: 10px
@@ -140,19 +149,49 @@
 		margin: 0px
 	&_search
 		&__form
-			display: flex
-			input
-				background-color: #333
-				padding: 15px
-				border: none
-				width: 93%
-				border-radius: 10px
-		&__btn
-			border-radius: 15px
-			border: none
-			margin-left: 5px
-			padding: clamp(15px, 20px, 25px)
-			background-color: $mainColor
+			position: relative
+			.search_block
+				position: relative
+				input
+					background-color: #333
+					font-size: 1.2rem
+					color: #c9c9c9
+					padding: 15px
+					border: none
+					width: 100%
+					border-radius: 10px
+				i
+					position: absolute
+					top: 25%
+					right: 2%
+					font-size: 1.4rem
+					color: $mainColor
+					cursor: pointer
+					transition: 1s all
+					&:hover
+						color: #c9c9c9
+			.options
+				list-style-type: none
+				border-radius: 1dvh
+				background-color: transparent
+				position: absolute
+				z-index: 2
+				width: 100%
+				padding: 1dvh
+				li
+					border: 2px solid #1e1e1e
+					border-radius: 1dvh
+					margin: 1dvh
+					padding: 1dvh
+					transition: 0.5s all
+					cursor: pointer
+					&:hover, &:hover .hl
+						background-color: #1e1e1e
+						color: #c9c9c9
+					.hl
+						background-color: #c9c9c9
+						border-radius: 1dvh
+						padding: 0.1dvh
 
 .carousel
 	padding: 15px 0
@@ -170,7 +209,7 @@
 			cursor: pointer
 			text-align: center
 			width: 45px
-			transform: translateY(22svh)
+			transform: translateY(550%)
 			height: auto
 			padding: 5px
 			color: #fff
@@ -184,9 +223,9 @@
 				// background-color: #333
 				color: #333
 		.prev
-			left: 0
+			left: 5px
 		.next
-			right: 0
+			right: 5px
 	.container-list
 		overflow: hidden
 	.tns-item

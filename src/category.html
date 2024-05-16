@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <title>Музыкальный магазин</title>
+    <title>Категории товаров MusInstrument</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-language" content="ru">
@@ -10,14 +10,35 @@
     <meta name="author" content="Eugene">
     <meta name="description" content="Музыкальные инструменты">
     <meta name="keywords" content="Гитара, барабан">
-    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <link rel="stylesheet" href="css/fonts.css">
+    <!-- <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/styles.min.css">
-    <link rel="stylesheet" href="css/category.min.css">
+    <link rel="stylesheet" href="css/category.min.css"> -->
     <link href="https://lk.easynetshop.ru/frontend/v5/ens-ce8652c4.css" rel="stylesheet">
+    <script>
+        // Определение базового URL
+        var baseURL = window.location.origin;
+        // Массив с путями к обычным css
+        var resources = [
+            '/css/bootstrap-grid.min.css',
+            '/css/bootstrap-reboot.min.css',
+            '/css/fonts.css',
+            '/css/styles.min.css',
+            '/css/category.min.css',
+        ];
+        // Функция для добавления ресурсов
+        resources.forEach(function (url) {
+            if (url.endsWith('.css')) {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = baseURL + url;
+                document.head.appendChild(link);
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -25,25 +46,24 @@
     <!-- <div class="loader"></div> -->
     <header>
         <nav>
-            <div class="navMain container">
+            <div class="navMain ">
                 <div class="row">
                     <div class="icons_block col-lg-4">
                         <div class="icons_messengers">
                             <a href=""><span class="icon-youtube"></span></a>
                             <a href=""><span class="icon-whatsapp"></span></a>
-                            <a href=""><span class="icon-vk"></span</a>
+                            <a href=""><span class="icon-vk"></span></a>
                             <a href=""><span class="icon-telegram"></span></a>
                         </div>
                     </div>
                     <div class="col-lg-4 topnav_block">
                         <div class="topnav" id="myTopnav">
-                            <a href="./index.html" target="_blank">Главная</a>
-                            <a href="./category.html" target="_blank" class="active">Каталог</a>
-                            <a href="#contact">О нас</a>
-                            <a href="#about">Документы</a>
+                            <a href="/main">Главная</a>
+                            <a href="/category" class="active">Каталог</a>
+                            <a href="/about">О нас</a>
                             <a class="phone" href="tel:8(812)6110097"><span class="icon-phone"></span>+7 812
                                 611-00-97</a>
-                            <div class="hamburger icon" onclick="responsive()">
+                            <div class="hamburger icon">
                                 <span></span>
                                 <span></span>
                                 <span></span>
@@ -53,20 +73,20 @@
                     <div class="menu_btn__block menu_btn col-auto col-lg-4">
                         <div class="menu_btn__cart">
                             <span data-modal='cart' class="modal-trigger icon-cart">
-                                <span class="count">0</span>
+                                <span class="count__cart">0</span>
                             </span>
                         </div>
                         <div class="profile_block">
                             <div class="reg_login_btn">
-                                <button data-modal='reg' class="modal-trigger button"><span>Регистрация </span></button>
                                 <button data-modal='log' class="modal-trigger button"><span>Вход</span></button>
                             </div>
+                            <div class="profile"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-        <div class="subheader">
+        <!-- <div class="subheader">
             <div class="container">
                 <div class="mini_info">
                     <div class="mini_info__logo">
@@ -76,35 +96,48 @@
                     <a href="tel:8(812)6110097"><span class="icon-phone"></span>+7 812 611-00-97</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </header>
-    <sectioom class="category">
-        <div class="container-list">
-            <div class="row">
-                <div class="col-lg-12 col-xxl-2">
+    <section class="category">
+        <div class="row">
+            <div class="catalog_list">
+                <div class="col-auto col-xl-3">
                     <article class="category__items">
-                        <header class="category_menu">
-                            <img src="img/icons/LogoMusicinstrument.svg" alt="Logo" class="category_logo__icon">
-                            <h1 class="category_block__title">
-                                <span class="category_block__title--top">MusInstrument</span>
-                                <span class="category_block__title--bottom">Категория товаров</span>
-                            </h1>
-                        </header>
                         <main class="category_menu__profiles">
+                            <div class="col-auto promo_seacrh__conent">
+                                <div class="promo_search">
+                                    <form action="" class="promo_search__form">
+                                        <div class="search_block">
+                                            <input type="text" placeholder="Поиск.." name="search" class="search">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                        <ul class="options">
+                                            <!--Поиск инструментов-->
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                            <h4>Цена</h4>
+                            <button id="sort-asc" class="dropbtn" data-asc>По возрастанию</button>
+                            <button id="sort-desc" class="dropbtn" data-desc>По убыванию</button>
+                            <h4>Категория товаров</h4>
                             <div class="category_menu__profiles_dropdown">
-                                <button id="category_menu__profiles__CategoryText" class="dropbtn">Выберите категорию</button>
+                                <button id="category_menu__profiles__CategoryText" class="dropbtn">Выберите
+                                    категорию</button>
                                 <div id="categoryDropdown" class="dropdown-content">
                                     <!-- Сюда будет добавляться содержимое категорий -->
                                 </div>
                             </div>
                             <div class="category_menu__profiles_dropdown">
-                                <button id="category_menu__profiles__SubCategoryText" class="dropbtn">Выберите подкатегорию</button>
+                                <button id="category_menu__profiles__SubCategoryText" class="dropbtn">Выберите
+                                    подкатегорию</button>
                                 <div id="subCategoryDropdown" class="dropdown-content">
                                     <!-- Сюда будет добавляться содержимое подкатегорий -->
                                 </div>
                             </div>
                             <div class="category_menu__profiles_dropdown">
-                                <button id="category_menu__profiles__subSubCategoryText" class="dropbtn">Выберите инструмент</button>
+                                <button id="category_menu__profiles__subSubCategoryText" class="dropbtn">Выберите
+                                    инструмент</button>
                                 <div id="subSubCategoryDropdown" class="dropdown-content">
                                     <!-- Сюда будет добавляться содержимое подкатегорий -->
                                 </div>
@@ -113,111 +146,25 @@
                     </article>
                     <form class="category__items-loadfile" method="post" enctype="multipart/form-data">
                         <label class="input-file">
-                                <input type="file" name="fileProduct">
-                                <span class="input-file-btn">Выберите файл</span>           
-                                <span class="input-file-text">Максимум ... МБ</span>
-                         </label>
+                            <input type="file" name="fileProduct" id="fileInput">
+                            <span class="input-file-btn">Выберите файл</span>
+                            <span class="input-file-text">Максимум ... МБ</span>
+                        </label>
+                        <progress id="fileUploadProgress" value="0" max="100"></progress>
                     </form>
+                    <button class="xlsxFileSubmit">Отправить</button>
+                    
                 </div>
-                <div class="col-lg-12 col-xxl-10">
-                    <section class="catalog_list" >
-                        <div class="container">
-                            <div class="row justify-content-center catalog_block">
-                                <div class="col-auto col-md-6 col-lg-4">
-                                    <div class="catalog_content text-center">
-                                        <div class="catalog-item">
-                                            <div class="catalog-item__wrapper">
-                                                <div class="catalog-item__content catalog-item__content_active">
-                                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                                </div>
-                                            </div>
-                                            <div class="catalog-item__footer_block">
-                                                <hr>
-                                                <div class="catalog-item__footer">
-                                                    <div class="catalog-item__prices">
-                                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                                        <div class="catalog-item__price">7 000 ₽</div>
-                                                    </div>
-                                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                                </div>
-                                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto col-md-6 col-lg-4">
-                                    <div class="catalog_content text-center">
-                                        <div class="catalog-item">
-                                            <div class="catalog-item__wrapper">
-                                                <div class="catalog-item__content catalog-item__content_active">
-                                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                                </div>
-                                            </div>
-                                            <div class="catalog-item__footer_block">
-                                                <hr>
-                                                <div class="catalog-item__footer">
-                                                    <div class="catalog-item__prices">
-                                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                                        <div class="catalog-item__price">7 000 ₽</div>
-                                                    </div>
-                                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                                </div>
-                                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto col-md-6 col-lg-4">
-                                    <div class="catalog_content text-center">
-                                        <div class="catalog-item">
-                                            <div class="catalog-item__wrapper">
-                                                <div class="catalog-item__content catalog-item__content_active">
-                                                    <img src="img/items/guitar.webp" alt="SIGMA PC 15.11" class="catalog-item__img">
-                                                    <div class="catalog-item__subtitle">Акустическая гитара<br>RockDen</div>
-                                                </div>
-                                            </div>
-                                            <div class="catalog-item__footer_block">
-                                                <hr>
-                                                <div class="catalog-item__footer">
-                                                    <div class="catalog-item__prices">
-                                                        <div data-price="SIGMApc15" class="catalog-item__old-price">10 000 ₽</div>
-                                                        <div class="catalog-item__price">7 000 ₽</div>
-                                                    </div>
-                                                    <button class="add-to-cart catalog-item__btn">КУПИТЬ</button>
-                                                </div>
-                                                <button class="catalog-item__link">ПОДРОБНЕЕ</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pagination:container">
-                                    <div class="pagination:number arrow">
-                                        <svg width="18" height="18"><use xlink:href="#left" /></svg>
-                                            <span class="arrow:text"></span> 
-                                    </div>                                    
-                                    <div class="pagination:number">1</div>
-                                    <div class="pagination:number">2</div>
-                                    <div class="pagination:number pagination:active">3</div>
-                                    <div class="pagination:number">4</div>                              
-                                    <div class="pagination:number">540</div>                                  
-                                    <div class="pagination:number arrow">
-                                        <svg width="18" height="18"><use xlink:href="#right" /></svg>
-                                    </div>
-                                </div>
-                                    <svg class="hide">
-                                    <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></symbol>
-                                    <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></symbol>
-                                  </svg>
-                            </div>
-                        </div>
-                    </section>
+                <div class="row justify-content-center catalog_block container">
+                    <!-- Товары -->
+                    <ul id="pagination" class="pagination-container">
+                    </ul>
                 </div>
             </div>
+
         </div>
         </div>
-    </sectioom>
+    </section>
     <footer class="footer_content">
         <div class="footer_content__container container">
             <div class="row">
@@ -268,7 +215,7 @@
         <div class="modal" id="reg">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Регистрация</div>
-            <form action="/reg" id="feed_form" class="feed_form" method="">
+            <form action="/reg" id="reg" class="feed_form" method="post">
                 <input name="firstName" type="text" placeholder="Ваше Имя">
                 <input name="lastName" type="text" placeholder="Ваша Фамилия">
                 <input name="email" type="email" placeholder="Ваш E-mail">
@@ -281,14 +228,21 @@
         <div class="modal" id="log">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Вход</div>
-            <form action="/log" class="feed_form" method="">
-                <input name="email" type="text" placeholder="Ваш Логин">
-                <input name="password" type="password" placeholder="Ваш Пароль">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember">
-                    <span>Запомнить</span>
-                </label>
+            <form action="/log" class="log" method="get">
+                <div class="row">
+                    <div class="col-auto">
+                        <input name="email" type="text" placeholder="Ваш Логин">
+                        <input name="password" type="password" placeholder="Ваш Пароль">
+                    </div>
+                    <div class="col-auto">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Запомнить</span>
+                        </label>
+                    </div>
+                </div>
                 <button class="feed_form_btn feed_form_btn_submit">Авторизоваться</button>
+                <button data-modal='reg' class="modal-trigger feed_form_btn"><span>Зарегистрироваться</span></button>
             </form>
         </div>
         <div class="modal modal_cart" id="cart">
@@ -299,209 +253,211 @@
                 <hr>
             </div>
             <div class="easynetshop-goods">
-                <div class="easynetshop-row easynetshop-header">
-                    <div class="easynetshop-2">Товар</div>
-                    <div class="easynetshop-3">Наименование</div>
-                    <div class="easynetshop-4">Кол-во</div>
-                    <div class="easynetshop-5">Цена</div>
+                <div class="easynetshop-header row">
+                    <div class="easynetshop col">Товар</div>
+                    <div class="easynetshop col">Наименование</div>
+                    <div class="easynetshop col">Кол-во</div>
+                    <div class="easynetshop col">Цена</div>
+                    <div class="easynetshop col">Удалить</div>
                 </div>
                 <div class="easynetshop_wrapper">
+                    <!-- Товары в корзине -->
                 </div>
-                <div class="easynetshop-row">
-                    <div class="easynetshop-right easynetshop-itogo">
-                        <table class="easynetshop-total-sum">
-                            <tbody>
-                                <tr class="easynetshop-total-itogo">
-                                    <td class="easynetshop-total-name">Итого</td>
-                                    <td class="easynetshop-goodsprice easynetshop-total-price">0</td>
-                                    <td class="easynetshop-total-valute">руб.</td>
-                                </tr>
-                                <tr class="easynetshop-total-discount" style="display: none;">
-                                    <td class="easynetshop-total-name">Скидка (-5% при заказе от 1000 руб)</td>
-                                    <td class="easynetshop-discountprice easynetshop-total-price">0</td>
-                                    <td class="easynetshop-total-valute">руб.</td>
-                                </tr>
-                                <tr class="easynetshop-total-itogo-discount">
-                                    <td class="easynetshop-total-name">Итого со скидкой</td>
-                                    <td class="easynetshop-discountallprice easynetshop-total-price">0</td>
-                                    <td class="easynetshop-total-valute">руб.</td>
-                                </tr>
-                                <tr class="easynetshop-total-delivery">
-                                    <td class="easynetshop-total-name">
-                                        Доставка (
-                                        <span class="easynetshop-deliveryname">
-                                            <select id="deliveryType">
-                                                <option value="selfPickup">Самовывоз</option>
-                                                <option value="cityDelivery">Доставка по городу</option>
-                                            </select>
-                                        </span>
-                                        )
-                                    </td>
-                                    <td class="easynetshop-deliveryprice easynetshop-total-price">0</td>
-                                    <td class="easynetshop-total-valute">руб.</td>
-                                </tr>
-                                <tr class="easynetshop-total-itogo-delivery">
-                                    <td class="easynetshop-total-name">Итого с доставкой</td>
-                                    <td class="easynetshop-allprice easynetshop-total-price">0</td>
-                                    <td class="easynetshop-total-valute">руб.</td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-                <br>
             </div>
+
+            <div class="easynetshop-row">
+                <div class="easynetshop-right easynetshop-itogo">
+                    <table class="easynetshop-total-sum">
+                        <tbody>
+                            <tr class="easynetshop-total-itogo">
+                                <td class="easynetshop-total-name">Итого</td>
+                                <td class="easynetshop-goodsprice easynetshop-total-price">0</td>
+                                <td class="easynetshop-total-valute">руб.</td>
+                            </tr>
+                            <tr class="easynetshop-total-discount" style="display: none;">
+                                <td class="easynetshop-total-name">Скидка (-5% при заказе от 1000 руб)</td>
+                                <td class="easynetshop-discountprice easynetshop-total-price">0</td>
+                                <td class="easynetshop-total-valute">руб.</td>
+                            </tr>
+                            <tr class="easynetshop-total-itogo-discount">
+                                <td class="easynetshop-total-name">Итого со скидкой</td>
+                                <td class="easynetshop-discountallprice easynetshop-total-price">0</td>
+                                <td class="easynetshop-total-valute">руб.</td>
+                            </tr>
+                            <tr class="easynetshop-total-delivery">
+                                <td class="easynetshop-total-name">
+                                    Доставка (
+                                    <span class="easynetshop-deliveryname">
+                                        <select id="deliveryType">
+                                            <option value="selfPickup">Самовывоз</option>
+                                            <option value="cityDelivery">Доставка по городу</option>
+                                        </select>
+                                    </span>
+                                    )
+                                </td>
+                                <td class="easynetshop-deliveryprice easynetshop-total-price">0</td>
+                                <td class="easynetshop-total-valute">руб.</td>
+                            </tr>
+                            <tr class="easynetshop-total-itogo-delivery">
+                                <td class="easynetshop-total-name">Итого с доставкой</td>
+                                <td class="easynetshop-allprice easynetshop-total-price">0</td>
+                                <td class="easynetshop-total-valute">руб.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
             <div class="row">
                 <div class="col btn_back"><button class="feed_form_btn feed_form_btn_submit">Вернуться на сайт</button>
                 </div>
                 <div class="col btn_buy__decoration" data-modal='finally_buy__items'><button
                         class="feed_form_btn feed_form_btn_submit">Перейти к оформлению</button></div>
             </div>
-
-
         </div>
-        <div class="modal" id="finally_buy__items">
-            <div class="modal_close">&times;</div>
-            <div class="row">
-                <div class="col">
-                    <h2>Оформление заказа</h2>
-                    <hr>
-                    <div class="finally_buy__items">
-                        <h3>Способ получения:</h3>
-                        <div class="deliveryOptions" id="">
-                            <div class="row justify-content-center">
-                                <div class="col"><button class="feed_form_btn"
-                                        onclick="filterSelection('all')">Самовывоз</button></div>
-                                <div class="col"><button class="feed_form_btn"
-                                        onclick="filterSelection('guitar')">Курьером</button></div>
-                                <div class="col"><button class="feed_form_btn"
-                                        onclick="filterSelection('electro')">Почтой РФ</button></div>
-                            </div>
-                        </div>
-                        <div class="deliveryOptions" id="">
-                            <div class="row justify-content-center">
-                                <div class="col"><button class="feed_form_btn active"
-                                        onclick="filterSelection('guitar')">В магазине</button></div>
-                                <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">В
-                                        пункте выдачи</button></div>
-                            </div>
-                        </div>
-                        <div class="row deliveryInfo">
-                            <div class="col-lg-6">
-                                <h3>Информация о магазине:</h3>
-                                <p>Название магазина: Примерный магазин</p>
-                                <p>Адрес: Улица Примерная, 123</p>
-                                <p>Время работы: Пн-Пт 9:00-18:00</p>
-                                <div class="col"><button class="deliveryInfo_btn feed_form_btn"
-                                        onclick="filterSelection('electro')">Выбрать другой магазин</button></div>
-                            </div>
-                            <div class="col-lg-6 deliveryInfo_map">
-                                <iframe
-                                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A3178074ebfc956b52c0e55efe35e113fcb30874c9e87aef032fb6ed804bc7451&amp;source=constructor"
-                                    frameborder="0" allowfullscreen="true" width="100%" height="100%"
-                                    style="display: block;"></iframe>
-                            </div>
+    </div>
+    <div class="modal" id="finally_buy__items">
+        <div class="modal_close">&times;</div>
+        <div class="row">
+            <div class="col">
+                <h2>Оформление заказа</h2>
+                <hr>
+                <div class="finally_buy__items">
+                    <h3>Способ получения:</h3>
+                    <div class="deliveryOptions" id="">
+                        <div class="row justify-content-center">
+                            <div class="col"><button class="feed_form_btn"
+                                    onclick="filterSelection('all')">Самовывоз</button></div>
+                            <div class="col"><button class="feed_form_btn"
+                                    onclick="filterSelection('guitar')">Курьером</button></div>
+                            <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">Почтой
+                                    РФ</button></div>
                         </div>
                     </div>
-                    <div class="deliveryOptions payment">
-                        <div class="row">
-                            <h3>Способ оплаты:</h3>
-                            <div class="col-4">
-                                <a href="#" class="payment_online">
-                                    <div class="title_subtitle">
-                                        <h4>Картой на сайте</h4>
-                                        <span>Оплатить на сайте сейчас</span>
-                                    </div>
-                                    <div class="payment_icons">
-                                        <span class="icon-cc-mastercard"></span>
-                                        <span class="icon-cc-visa"></span>
-                                        <span class="icon-national-payment-system-mir"><span class="path1"></span><span
-                                                class="path2"></span></span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <a href="#" class="payment_SBP">
-                                    <div class="title_subtitle">
-                                        <h4>Через СБП</h4>
-                                        <span>Оплатить через систему быстрых палетежй сейчас</span>
-                                    </div>
-                                    <div class="payment_icons">
-                                        <span class="icon-sbp"><span class="path1"></span><span
-                                                class="path2"></span><span class="path3"></span><span
-                                                class="path4"></span><span class="path5"></span><span
-                                                class="path6"></span><span class="path7"></span><span
-                                                class="path8"></span><span class="path9"></span><span
-                                                class="path10"></span><span class="path11"></span><span
-                                                class="path12"></span><span class="path13"></span><span
-                                                class="path14"></span><span class="path15"></span><span
-                                                class="path16"></span><span class="path17"></span><span
-                                                class="path18"></span><span class="path19"></span><span
-                                                class="path20"></span><span class="path21"></span></span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-4">
-                                <a href="#" class="payment_place">
-                                    <div class="title_subtitle">
-                                        <h4>При получении</h4>
-                                        <span>Оплатить картой или наличными при получении заказа</span>
-                                    </div>
-                                    <div class="payment_icons">
-                                        <span class="icon-wallet"></span>
-                                    </div>
-                                </a>
-                            </div>
+                    <div class="deliveryOptions" id="">
+                        <div class="row justify-content-center">
+                            <div class="col"><button class="feed_form_btn active" onclick="filterSelection('guitar')">В
+                                    магазине</button></div>
+                            <div class="col"><button class="feed_form_btn" onclick="filterSelection('electro')">В
+                                    пункте выдачи</button></div>
                         </div>
                     </div>
-                    <div>
-                        <h3>(Если не зарегистрированный пользователь)Получатель:</h3>
-                        <form action="/reg" id="feed_form" class="feed_form" method="">
-                            <input name="fullName" type="text" placeholder="Ваше ФИО">
-                            <input name="email" type="email" placeholder="Ваш E-mail">
-                            <input name="phone" type="tel" placeholder="Ваш Телефон">
-                        </form>
+                    <div class="row deliveryInfo">
+                        <div class="col-lg-6">
+                            <h3>Информация о магазине:</h3>
+                            <p>Название магазина: Примерный магазин</p>
+                            <p>Адрес: Улица Примерная, 123</p>
+                            <p>Время работы: Пн-Пт 9:00-18:00</p>
+                            <div class="col"><button class="deliveryInfo_btn feed_form_btn"
+                                    onclick="filterSelection('electro')">Выбрать другой магазин</button></div>
+                        </div>
+                        <div class="col-lg-6 deliveryInfo_map">
+                            <iframe
+                                src="https://yandex.ru/map-widget/v1/?um=constructor%3A3178074ebfc956b52c0e55efe35e113fcb30874c9e87aef032fb6ed804bc7451&amp;source=constructor"
+                                frameborder="0" allowfullscreen="true" width="100%" height="100%"
+                                style="display: block;"></iframe>
+                        </div>
                     </div>
                 </div>
-                <div class="col-3 TotalInfoItems">
-                    <div class="TotalInfoItems_content">
-                        <h3>Итог заказа:</h3>
-                        <div class="row">
-                            <div class="col-7">Количество товара:</div>
-                            <div class="col-5 TotalInfoItems_info">1</div>
+                <div class="deliveryOptions payment">
+                    <div class="row">
+                        <h3>Способ оплаты:</h3>
+                        <div class="col-4">
+                            <a href="#" class="payment_online">
+                                <div class="title_subtitle">
+                                    <h4>Картой на сайте</h4>
+                                    <span>Оплатить на сайте сейчас</span>
+                                </div>
+                                <div class="payment_icons">
+                                    <span class="icon-cc-mastercard"></span>
+                                    <span class="icon-cc-visa"></span>
+                                    <span class="icon-national-payment-system-mir"><span class="path1"></span><span
+                                            class="path2"></span></span>
+                                </div>
+                            </a>
                         </div>
-                        <div class="row">
-                            <div class="col-7">Вес товара:</div>
-                            <div class="col-5 TotalInfoItems_info">...</div>
+                        <div class="col-4">
+                            <a href="#" class="payment_SBP">
+                                <div class="title_subtitle">
+                                    <h4>Через СБП</h4>
+                                    <span>Оплатить через систему быстрых палетежй сейчас</span>
+                                </div>
+                                <div class="payment_icons">
+                                    <span class="icon-sbp"><span class="path1"></span><span class="path2"></span><span
+                                            class="path3"></span><span class="path4"></span><span
+                                            class="path5"></span><span class="path6"></span><span
+                                            class="path7"></span><span class="path8"></span><span
+                                            class="path9"></span><span class="path10"></span><span
+                                            class="path11"></span><span class="path12"></span><span
+                                            class="path13"></span><span class="path14"></span><span
+                                            class="path15"></span><span class="path16"></span><span
+                                            class="path17"></span><span class="path18"></span><span
+                                            class="path19"></span><span class="path20"></span><span
+                                            class="path21"></span>
+                                    </span>
+                                </div>
+                            </a>
                         </div>
-                        <div class="row">
-                            <div class="col-7">Цена:</div>
-                            <div class="col-5 TotalInfoItems_info">10 000 ₽</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-7">Доставка:</div>
-                            <div class="col-5 TotalInfoItems_info">Бесплатно</div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-7">Скидка:</div>
-                            <div class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-7">Итого</div>
-                            <div class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
+                        <div class="col-4">
+                            <a href="#" class="payment_place">
+                                <div class="title_subtitle">
+                                    <h4>При получении</h4>
+                                    <span>Оплатить картой или наличными при получении заказа</span>
+                                </div>
+                                <div class="payment_icons">
+                                    <span class="icon-wallet"></span>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col"><button class="finally_buy__btn">Оплатить заказ</button></div>
+                </div>
+                <div>
+                    <h3>(Если не зарегистрированный пользователь)Получатель:</h3>
+                    <form action="/reg" id="feed_form" class="feed_form" method="">
+                        <input name="fullName" type="text" placeholder="Ваше ФИО">
+                        <input name="email" type="email" placeholder="Ваш E-mail">
+                        <input name="phone" type="tel" placeholder="Ваш Телефон">
+                    </form>
                 </div>
             </div>
+            <div class="col-3 TotalInfoItems">
+                <div class="TotalInfoItems_content">
+                    <h3>Итог заказа:</h3>
+                    <div class="row">
+                        <div class="col-7">Количество товара:</div>
+                        <div class="col-5 TotalInfoItems_info">1</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">Вес товара:</div>
+                        <div class="col-5 TotalInfoItems_info">...</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">Цена:</div>
+                        <div class="col-5 TotalInfoItems_info">10 000 ₽</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">Доставка:</div>
+                        <div class="col-5 TotalInfoItems_info">Бесплатно</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-7">Скидка:</div>
+                        <div class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">Итого</div>
+                        <div class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
+                    </div>
+                </div>
+                <div class="col"><button class="finally_buy__btn">Оплатить заказ</button></div>
+            </div>
         </div>
-        <div class="modal modal_mini" id="thanks">
-            <div class="modal_close">&times;</div>
-            <div class="modal_subtitle">Спасибо за вашу заявку!</div>
-            <div class="modal_descr">Наш менеджер свяжется с вами в ближайшее время!</div>
-        </div>
+    </div>
+    <div class="modal modal_mini" id="thanks">
+        <div class="modal_close">&times;</div>
+        <div class="modal_subtitle">Спасибо за вашу заявку!</div>
+        <div class="modal_descr">Наш менеджер свяжется с вами в ближайшее время!</div>
+    </div>
     </div>
     <a href="#" class="pageup">
         <span class="icon-chevron-circle-up"></span>
@@ -509,13 +465,44 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- <script defer src="https://lk.easynetshop.ru/frontend/v5/ens-ce8652c4.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/imask"></script>
-    <script src="js/category.js"></script>
-    <script src="js/buy_items.js"></script>
+    <script>
+        var baseURL = window.location.origin;
+        // Массив с путями к обычным js
+        var resources = [
+            '/js/jquery.validate.min.js',
+            '/js/JQscript.js'
+        ];
+        // Массив с путями к модульным скриптам
+        var resources_module = [
+            '/js/base/counter.js',
+            '/js/category.js'
+        ];
+        // Функция для добавления ресурсов
+        resources.forEach(function (url) {
+            if (url.endsWith('.js')) {
+                var scriptElement = document.createElement('script');
+                scriptElement.src = baseURL + url;
+                scriptElement.type = 'text/javascript';
+                scriptElement.defer = true;
+                document.body.appendChild(scriptElement);
+            }
+        });
+        // Функция для добавления модульных ресурсов
+        resources_module.forEach(function (url) {
+            var scriptElement = document.createElement('script');
+            scriptElement.src = baseURL + url;
+            scriptElement.type = 'module';
+            scriptElement.defer = false;
+            document.body.appendChild(scriptElement);
+        });
+    </script>
+    <!-- <script type="module" src="js/base/counter.js"></script>
+    <script type="module" src="js/category.js"></script>
     <script src="js/jquery.validate.min.js"></script>
-    <script src="js/JQscript.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/JQscript.js" defer></script>
+    <script type="module" src="js/script.js"></script> -->
 </body>
 
 </html>
