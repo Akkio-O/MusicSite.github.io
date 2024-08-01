@@ -10,12 +10,12 @@
     <meta name="author" content="Eugene">
     <meta name="description" content="Музыкальные инструменты">
     <meta name="keywords" content="Гитара, барабан">
-    <link rel="stylesheet" href="src/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="src/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <link rel="stylesheet" href="src/css/fonts.css">
-    <link rel="stylesheet" href="src/css/styles.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styles.min.css">
     <link href="https://lk.easynetshop.ru/frontend/v5/ens-ce8652c4.css" rel="stylesheet">
 </head>
 
@@ -35,9 +35,10 @@
                     </div>
                     <div class="col-lg-4 topnav_block">
                         <div class="topnav" id="myTopnav">
-                            <a href="src/index" class="active">Главная</a>
-                            <a href="src/category">Каталог</a>
-                            <a href="src/about">О нас</a>
+                            <a href="./index" class="active">Главная</a>
+                            <a href="./category">Каталог</a>
+                            <a href="./about">О нас</a>
+                            <a href="./exmaple_product.html">Пример товара</a>
                             <a class="phone" href="tel:8(812)6110097"><span class="icon-phone"></span>+7 812
                                 611-00-97</a>2
                             <div class="hamburger icon">
@@ -78,10 +79,6 @@
     <section class="promo container">
         <div class="row justify-content-center">
             <div class="promo_catalog__wrapper col-auto col-lg-4">
-                <!-- <iframe
-                src="about.html"
-                frameborder="0" allowfullscreen="true" width="640px" height="600px"
-                style="display: block;"></iframe> -->
                 <div class="FrameCategory">
                     <ul class="FrameCategory_list" id="categories-list">
                         <li class="positionBlock catalog_title">
@@ -114,9 +111,9 @@
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
                         </div>
                         <div class="carousel_inner">
-                            <div><img src="src/img/carousel/Promo_1.jpg" alt="slide"></div>
-                            <div><img src="src/img/carousel/Promo_2.jpg" alt="slide"></div>
-                            <div><img src="src/img/carousel/Promo_3.jpg" alt="slide"></div>
+                            <div><img src="img/carousel/Promo_1.jpg" alt="slide"></div>
+                            <div><img src="img/carousel/Promo_2.jpg" alt="slide"></div>
+                            <div><img src="img/carousel/Promo_3.jpg" alt="slide"></div>
                         </div>
                     </div>
                 </div>
@@ -230,15 +227,16 @@
                 <input name="lastName" type="text" placeholder="Ваша Фамилия">
                 <input name="email" type="email" placeholder="Ваш E-mail">
                 <input name="phone" type="tel" placeholder="Ваш Телефон">
-                <input name="password" type="text" placeholder="Ваш Пароль">
-                <input name="confirm_password" type="text" placeholder="Подтверждение Пароля">
+                <input name="password" type="password" placeholder="Ваш Пароль">
+                <input name="confirm_password" type="password" placeholder="Подтверждение Пароля">
                 <button class="feed_form_btn feed_form_btn_submit">Зарегистрироваться</button>
             </form>
         </div>
         <div class="modal" id="log">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Вход</div>
-            <form action="/log" class="log" method="get">
+            <form id="loginForm" action="/log" class="log" method="post">
+                <input type="hidden" name="_csrf" value="">
                 <div class="row">
                     <div class="col-auto">
                         <input name="email" type="text" placeholder="Ваш Логин">
@@ -255,6 +253,7 @@
                 <button data-modal='reg' class="modal-trigger feed_form_btn"><span>Зарегистрироваться</span></button>
             </form>
         </div>
+       
         <div class="modal modal_cart" id="cart">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Ваша корзина</div>
@@ -263,11 +262,12 @@
                 <hr>
             </div>
             <div class="easynetshop-goods">
-                <div class="easynetshop-row easynetshop-header">
-                    <div class="easynetshop-2">Товар</div>
-                    <div class="easynetshop-3">Наименование</div>
-                    <div class="easynetshop-4">Кол-во</div>
-                    <div class="easynetshop-5">Цена</div>
+                <div class="easynetshop-row row">
+                    <div class="col-2">Товар</div>
+                    <div class="col-3">Наименование</div>
+                    <div class="col-2">Кол-во</div>
+                    <div class="col-3">Цена</div>
+                    <div class="col-2">Удалить</div>
                 </div>
                 <div class="easynetshop_wrapper">
                 </div>
@@ -433,7 +433,7 @@
                         <h3>Итог заказа:</h3>
                         <div class="row">
                             <div class="col-7">Количество товара:</div>
-                            <div class="col-5 TotalInfoItems_info">1</div>
+                            <div data-quanity class="col-5 TotalInfoItems_info">1</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Вес товара:</div>
@@ -441,23 +441,23 @@
                         </div>
                         <div class="row">
                             <div class="col-7">Цена:</div>
-                            <div class="col-5 TotalInfoItems_info">10 000 ₽</div>
+                            <div data-preTotalPrice class="col-5 TotalInfoItems_info">10 000 ₽</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Доставка:</div>
-                            <div class="col-5 TotalInfoItems_info">Бесплатно</div>
+                            <div data-Delivery class="col-5 TotalInfoItems_info">Бесплатно</div>
                         </div>
 
                         <div class="row">
                             <div class="col-7">Скидка:</div>
-                            <div class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
+                            <div data-TotalDiscount class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Итого</div>
-                            <div class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
+                            <div data-TotalPrice class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
                         </div>
                     </div>
-                    <div class="col"><button class="finally_buy__btn">Оплатить заказ</button></div>
+                    <div class="col"><button class="finally_buy__btn feed_form_btn">Оплатить заказ</button></div>
                 </div>
             </div>
         </div>
@@ -473,11 +473,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/imask"></script>
-    <script src="src/js/carousel/carousel.js"></script>
-    <script src="src/js/jquery.validate.min.js"></script>
-    <script type="module" src="src/js/base/counter.js"></script>
-    <script type="module" src="src/js/script.js"></script>
-    <script src="src/js/JQscript.js" defer></script>
+    <script src="js/carousel/carousel.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script type="module" src="js/base/counter.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script src="js/JQscript.js" defer></script>
 </body>
 
 </html>

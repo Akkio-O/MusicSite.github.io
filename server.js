@@ -35,11 +35,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'src')));
 
-// app.use((req, res, next) => {
-//     res.setHeader('Content-Security-Policy', "default-src 'self'");
-//     next();
-// });
-
 // Применяем CSRF-защиту ко всем маршрутам, кроме ''
 app.use((req, res, next) => {
     if (req.path !== '/reg' && req.path !== '/fileExcel') {
