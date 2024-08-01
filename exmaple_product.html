@@ -563,13 +563,13 @@
         var baseURL = window.location.origin;
         // Массив с путями к обычным js
         var resources = [
-            '/js/jquery.validate.min.js',
-            '/js/JQscript.js'
+            './src/js/jquery.validate.min.js',
+            './src/js/JQscript.js'
         ];
         // Массив с путями к модульным скриптам
         var resources_module = [
-            '/js/base/counter.js',
-            '/js/product.js'
+            './src/js/base/counter.js',
+            './src/js/product.js'
         ];
         // Функция для добавления ресурсов
         resources.forEach(function (url) {
@@ -590,10 +590,10 @@
             document.body.appendChild(scriptElement);
         });
     </script>
-    <script type="module" src="js/base/counter.js"></script>
-    <script type="module" src="js/category.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/JQscript.js" defer></script>
-    <script type="module" src="js/product.js"></script>
+    <script type="module" src="./src/js/base/counter.js"></script>
+    <script type="module" src="./src/js/category.js"></script>
+    <script src="./src/js/jquery.validate.min.js"></script>
+    <script src="./src/js/JQscript.js" defer></script>
+    <script type="module" src="./src/js/product.js"></script>
 </body>
 </html>
