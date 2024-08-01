@@ -1,7 +1,6 @@
 import { cart, cartItemsElement, emptyCartMessage, easynetshopGoods, btn_buy__decoration } from '../modules/cart/cart.mjs';
 import { updateTotalPrice } from '../modules/cart/price.mjs';
 
-console.log('counter.js работает')
 const createdItems = [];
 
 function updateCartCounter() {
