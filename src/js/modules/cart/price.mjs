@@ -4,15 +4,11 @@ const deliveryPriceElement = document.querySelector('.easynetshop-deliveryprice'
 
 deliveryTypeSelect.addEventListener('change', function () {
     const selectedOption = this.value;
-
-    if (selectedOption === 'cityDelivery') {
-        deliveryPrice = 300;
-    } else {
-        deliveryPrice = 0;
-    }
-
+    deliveryPrice = selectedOption === 'cityDelivery' ? 300 : 0;
     deliveryPriceElement.textContent = deliveryPrice.toFixed(2);
     updateTotalPrice();
+    let PriceDelivery = document.querySelector('[data-Delivery]');
+    PriceDelivery = deliveryPrice !== 0 ? PriceDelivery.textContent = deliveryPrice : PriceDelivery.textContent = 'Бесплатно';
 });
 
 function updateTotalPrice() {
@@ -41,15 +37,25 @@ function updateTotalPrice() {
         }
     });
 
-    const totalPriceElement = document.querySelector('.easynetshop-discountallprice');
-    totalPriceElement.textContent = totalPrice.toLocaleString('ru-RU');
+const totalPriceElement = document.querySelector('.easynetshop-discountallprice');
+const totalDiscountPriceElement = document.querySelector('.easynetshop-goodsprice');
+const totalDeliveryPriceElement = document.querySelector('.easynetshop-allprice');
+let totalPriceWithDelivery = totalPrice + parseFloat(deliveryPrice);
+let TotalInfoTotalPrice = document.querySelector('[data-preTotalPrice]');
+let TotalInfoPrePrice = document.querySelector('[data-TotalPrice]');
 
-    const totalDiscountPriceElement = document.querySelector('.easynetshop-goodsprice');
-    totalDiscountPriceElement.textContent = totalDiscountPrice.toLocaleString('ru-RU');
+function calculation(TotalPriceElement, TotalPrice){
+    TotalPriceElement.textContent = TotalPrice.toLocaleString('ru-RU').replace(/[^\d.]/g,  '');
+}
+calculation(totalPriceElement, totalPrice);
+calculation(TotalInfoTotalPrice, totalDiscountPrice);
+calculation(TotalInfoPrePrice, totalPriceWithDelivery);
+calculation(totalDiscountPriceElement, totalDiscountPrice);
+calculation(totalDeliveryPriceElement, totalPriceWithDelivery);
 
-    const totalDeliveryPriceElement = document.querySelector('.easynetshop-allprice');
-    let totalPriceWithDelivery = totalPrice + parseFloat(deliveryPrice);
-    totalDeliveryPriceElement.textContent = totalPriceWithDelivery.toLocaleString('ru-RU');
+let totalDiscount = document.querySelector('[data-TotalDiscount]');
+let discountAmount =  totalDiscountPrice - totalPriceWithDelivery;
+totalDiscount.textContent =  discountAmount.toLocaleString('ru-RU');
 }
 
 export {deliveryPrice, deliveryTypeSelect, deliveryPriceElement, updateTotalPrice };

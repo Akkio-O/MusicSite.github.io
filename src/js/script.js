@@ -3,7 +3,7 @@ import { displayOptions } from './modules/items/searchItems.mjs';
 import { addSortEventListeners, addFilterEventListeners } from './modules/items/filterItems.mjs';
 import { myTopnav } from './modules/header/nav.mjs';
 // getOptions, displayOptions, clearOptions 
-myTopnav();
+
 
 window.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:8080/categoryGroup')
@@ -70,20 +70,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     const dataIndex = button.dataset.index;
                     const targetMenu = document.querySelector(`#menu${dataIndex}`);
                     if (!button.classList.contains('collapsible')) {
-                        // Проверяем, что событие произошло именно на кнопке, а не на ее дочерних элементах
                         if (event.target === button) {
-                            // Убираем класс active у всех контекстных меню
                             contextMenus.forEach(menu => {
                                 menu.classList.remove('active');
                             });
                             targetMenu.classList.add('active');
-                            // Если кнопка не имеет класса .collapsible
-                            // if (button.classList.contains('collapsible') || button) {
-                            //     // Добавляем класс active только текущему контекстному меню
-                            //     targetMenu.classList.add('active');
-                            // } else {
-                            //     targetMenu.classList.remove('active');
-                            // }
                         }
                     }
                 });
@@ -250,3 +241,5 @@ function mediaXl(x) {
 const x = window.matchMedia("(max-width: 1200px)")
 mediaXl(x)
 x.addListener(mediaXl)
+
+myTopnav();

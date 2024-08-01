@@ -167,22 +167,16 @@ async function handleSubmitButtonClick(event) {
     // Отправляем запрос на сервер
     xhr.open('POST', 'http://localhost:8080/fileExcel');
 
-    // Получаем размер файла и устанавливаем заголовок Content-Length
-    xhr.setRequestHeader('Content-Length', file.size);
-
     // Отправляем файл на сервер
     xhr.send(formData);
 }
-
 
 document.querySelector('#fileInput').addEventListener('change', function (event) {
     let file = event.target.files[0];
     event.target.closest('.input-file').querySelector('.input-file-text').innerHTML = file.name;
 });
+
 // Назначаем обработчик события нажатия кнопки "Отправить"
 document.querySelector('.xlsxFileSubmit').addEventListener('click', handleSubmitButtonClick);
-
-
-
 
 myTopnav();

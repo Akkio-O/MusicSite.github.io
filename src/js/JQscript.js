@@ -1,4 +1,31 @@
 $(document).ready(function () {
+    $.get('/csrf-token', function (data) {
+        $('input[name="_csrf"]').val(data.csrfToken);
+        // Сохраняем контекст формы
+        var $form = $('#log form');
+        $form.submit(function (e) {
+            e.preventDefault();
+            var token = $('input[name=_csrf]').val(); // Получение CSRF токена из скрытого поля формы
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/log",
+                data: $(this).serialize(),
+                headers: {
+                    'CSRF-Token': token // Добавление CSRF токена в заголовок запроса
+                }
+            }).done(function (response) {
+                $form.find("input").val("");
+                $('.overlay, #reg, #log').fadeOut('slow');
+                $form.trigger('reset');
+                const firstName = response.firstName;
+                designProfile(firstName);
+                initializeProfileOverlay();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('Ошибка авторизации:', textStatus, errorThrown);
+            });
+        });
+    });
+
     //modal
     $('.modal-trigger').on('click', function () {
         let modalId = $(this).data('modal');
@@ -37,7 +64,6 @@ $(document).ready(function () {
         $('.overlay, #' + modalId).fadeIn('slow');
     });
 
-    //
     // Функция для инициализации навигации профиля
     function initializeProfileOverlay() {
         const $overlayProfile = $("#overlay_profile");
@@ -86,7 +112,7 @@ $(document).ready(function () {
         $(form).validate({
             rules: {
                 firstName: "required",
-                LastName: "required",
+                lastName: "required",
                 phone: "required",
                 password: {
                     required: true,
@@ -94,7 +120,7 @@ $(document).ready(function () {
                 },
                 confirm_password: {
                     required: true,
-                    equalTo: "#password"
+                    equalTo: `[name="password"]`
                 },
                 email: {
                     required: true,
@@ -102,13 +128,19 @@ $(document).ready(function () {
                 }
             },
             messages: {
-                name: "Пожалуйста, заполните свое имя",
-                surname: "Пожалуйста, заполните свою фамилию",
-                password: "Пожалуйста, заполните пароль не менее 6 символов",
+                firstName: "Пожалуйста, заполните свое имя",
+                lastName: "Пожалуйста, заполните свою фамилию",
                 phone: "Пожалуйста, заполните свой номер телефона",
-                confirm_password: "Пожалуйста, заполните пароль повторно",
+                password: {
+                    required: "Пожалуйста, заполните пароль",
+                    minlength: "Пароль должен содержать не менее 6 символов"
+                },
+                confirm_password: {
+                    required: "Пожалуйста, повторите пароль",
+                    equalTo: "Пароли не совпадают"
+                },
                 email: {
-                    required: "Пажлуйста, заполните свою почту",
+                    required: "Пожалуйста, заполните свою почту",
                     email: "Неправильно введен адрес почты"
                 }
             }
@@ -145,9 +177,6 @@ $(document).ready(function () {
         });
     }
 
-
-
-    // form submit reg
     $('#reg form').submit(function (e) {
         e.preventDefault();
         // Проверяем каждое поле на наличие значения
@@ -159,14 +188,14 @@ $(document).ready(function () {
                 return false;
             }
         }
-
         // Проверка на совпадение паролей
         const password = $('[name="password"]').val();
         const confirm_password = $('[name="confirm_password"]').val();
+        console.log("Password:", password);
+        console.log("Confirm Password:", confirm_password);
         if (password !== confirm_password) {
             return false;
         }
-
         // Если все поля заполнены и пароли совпадают, отправляем данные на сервер
         $.ajax({
             type: "POST",
@@ -177,24 +206,6 @@ $(document).ready(function () {
             $('.overlay, #reg, #log').fadeOut();
             const firstName = userData.firstName;
             $('form').trigger('reset');
-            designProfile(firstName);
-            initializeProfileOverlay();
-        });
-        return false;
-    });
-
-    // form submit login
-    $('#log form').submit(function (e) {
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "http://localhost:8080/login",
-            data: $(this).serialize()
-        }).done(function (response) {
-            $(this).find("input").val("");
-            $('.overlay, #reg, #log').fadeOut('slow');
-            $('form').trigger('reset');
-            const firstName = response.firstName;
             designProfile(firstName);
             initializeProfileOverlay();
         });

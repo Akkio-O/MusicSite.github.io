@@ -3,18 +3,6 @@ const ejs = require('ejs');
 const xlsx = require('xlsx');
 const path = require('path');
 
-function transliterate(text) {
-    if (!text) return ''; // Если text пуст или undefined, вернуть пустую строку
-    const russianLetters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
-    const englishLetters = 'abvgdeejzijklmnoprstufhzcss_y_eua';
-    return text.toLowerCase().split('').map(char => {
-        const index = russianLetters.indexOf(char);
-        return index !== -1 ? englishLetters[index] : char;
-    }).join('');
-}
-const newFolderName = transliterate('твоя_русская_папка');
-
-
 async function readExcel(filePath) {
     const productData = xlsx.readFile(filePath);
     const data = xlsx.utils.sheet_to_json(productData.Sheets[productData.SheetNames[0]], { header: 1 });
@@ -77,12 +65,12 @@ async function renderHTMLFiles(productsFolderPath, ejsTemplate, con) {
     const filesNotToUpdate = [];
     await Promise.all(products.map(async (product) => {
         const folders = [
-    transliterate(product.IC_GROUP0),
-    transliterate(product.IC_GROUP1),
-    transliterate(product.IC_GROUP2)
-].filter(Boolean)
-.map(segment => encodeURIComponent(segment)) // Кодирование каждого сегмента пути
-.join('/');
+            (product.IC_GROUP0),
+            (product.IC_GROUP1),
+            (product.IC_GROUP2)
+        ].filter(Boolean)
+            .map(segment => decodeURIComponent(segment)) // Декодирование каждого сегмента пути
+            .join('/');
         const fullPath = path.join(productsFolderPath, folders); // Путь к подпапке
 
         const fileName = `${product.IE_XML_ID}.html`;
@@ -101,36 +89,55 @@ async function renderHTMLFiles(productsFolderPath, ejsTemplate, con) {
 
 async function createOrCheckFolderStructure(products, productsFolderPath) {
     await Promise.all(products.map(async (product) => {
-        const folders = [
-    transliterate(product.IC_GROUP0),
-    transliterate(product.IC_GROUP1),
-    transliterate(product.IC_GROUP2)
-].filter(Boolean)
-.map(segment => encodeURIComponent(segment)) // Кодирование каждого сегмента пути
-.join('/');
-        const fullPath = path.join(productsFolderPath, folders);
+        const { IC_GROUP0, IC_GROUP1, IC_GROUP2 } = product;
 
+        // Создаём путь для IC_GROUP0
+        const group0Path = path.join(productsFolderPath, IC_GROUP0);
         try {
-            await fs.promises.access(fullPath);
+            await fs.promises.access(group0Path);
         } catch (err) {
             if (err.code === 'ENOENT') {
-                // Папка не существует, создаём её и все промежуточные папки
-                await fs.promises.mkdir(fullPath, { recursive: true });
+                await fs.promises.mkdir(group0Path, { recursive: true });
+            }
+        }
+
+        // Создаём путь для IC_GROUP1, если он существует
+        if (IC_GROUP1) {
+            const group1Path = path.join(group0Path, IC_GROUP1);
+            try {
+                await fs.promises.access(group1Path);
+            } catch (err) {
+                if (err.code === 'ENOENT') {
+                    await fs.promises.mkdir(group1Path, { recursive: true });
+                }
+            }
+
+            // Создаём путь для IC_GROUP2, если он существует
+            if (IC_GROUP2) {
+                const group2Path = path.join(group1Path, IC_GROUP2);
+                try {
+                    await fs.promises.access(group2Path);
+                } catch (err) {
+                    if (err.code === 'ENOENT') {
+                        await fs.promises.mkdir(group2Path, { recursive: true });
+                    }
+                }
             }
         }
     }));
 }
 
+
 async function addToCategoryFolder(category, product, ejsTemplate, productsFolderPath) {
     const encodedCategories = [
-        encodeURIComponent(transliterate(product.IC_GROUP0)),
-        encodeURIComponent(transliterate(product.IC_GROUP1)),
-        product.IC_GROUP2 ? encodeURIComponent(transliterate(product.IC_GROUP2)) : undefined
+        (product.IC_GROUP0),
+        (product.IC_GROUP1),
+        (product.IC_GROUP2 ? (product.IC_GROUP2) : undefined)
     ].filter(Boolean); // Исключаем пустые значения
 
-    const folders = encodedCategories.filter(cat => cat !== category).join('/');
+    const folders = encodedCategories.join('/');
     console.log('Encoded folders:', folders); // Выводим значения folders для отладки
-    
+
     if (folders) { // Проверяем, что есть папки для создания
         const fullPath = path.join(productsFolderPath, folders);
         console.log('Full path:', fullPath); // Выводим fullPath для отладки

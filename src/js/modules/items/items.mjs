@@ -13,6 +13,16 @@ export let active = null;
 export let sortOrderAsc = true;
 export let totalNumPagination = 0;
 
+function transliterate(text) {
+    if (!text) return '';
+    const russianLetters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+    const englishLetters = 'abvgdeejzijklmnoprstufhzcss_y_eua';
+    return text.toLowerCase().split('').map(char => {
+        const index = russianLetters.indexOf(char);
+        return index !== -1 ? englishLetters[index] : char;
+    }).join('');
+}
+
 // Блок с товаром
 export function categoryItem(product) {
     const newItem = document.createElement("div");

@@ -96,6 +96,7 @@ function handleBuyButtonClickBuy(target) {
                 }
                 updateTotalPrice();
                 updateCartCounter();
+                updateQuantity();
             }
         });
     } else {
@@ -103,19 +104,28 @@ function handleBuyButtonClickBuy(target) {
     }
 }
 
+function updateQuantity() {
+    let TotalInfoQuantity = document.querySelector('[data-quanity]');
+    const quantityProducts = document.querySelectorAll('[data-counter]');
+    const totalQuantity = Array.from(quantityProducts).reduce((total, element) => {
+        return total + parseInt(element.textContent, 10);
+    }, 0);
+    TotalInfoQuantity.textContent = totalQuantity;
+}
+
 function handleBuyButtonClickProduct(target) {
     const card = target.closest('main');
-const imgElement = card.querySelector('.product__container_img');
-const backgroundImageStyle = imgElement.style.backgroundImage;
-const backgroundImageURL = backgroundImageStyle.replace('url("', '').replace('")', '');
-const product = {
-    id: card.querySelector('.product__container').getAttribute('data-XML_ID'),
-    imgSrc: backgroundImageURL,
-    name: card.querySelector('.product__container_title').textContent,
-    priceOld: card.querySelector('.catalog-item__old-price').textContent,
-    price: card.querySelector('.catalog-item__price').textContent,
-    discount: card.querySelector('.discount').textContent
-};
+    const imgElement = card.querySelector('.product__container_img');
+    const backgroundImageStyle = imgElement.style.backgroundImage;
+    const backgroundImageURL = backgroundImageStyle.replace('url("', '').replace('")', '');
+    const product = {
+        id: card.querySelector('.product__container').getAttribute('data-XML_ID'),
+        imgSrc: backgroundImageURL,
+        name: card.querySelector('.product__container_title').textContent,
+        priceOld: card.querySelector('.catalog-item__old-price').textContent,
+        price: card.querySelector('.catalog-item__price').textContent,
+        discount: card.querySelector('.discount').textContent
+    };
     const alreadyInCart = Array.from(cartItemsElement.querySelectorAll('.easynetshop-goodtitle')).some(item => item.getAttribute('data-XML_ID') === product.id);
     if (!alreadyInCart) {
         const cartItem = document.createElement('div');
@@ -157,7 +167,6 @@ const product = {
         deleteButton.addEventListener('click', () => removeFromCart(cartItem));
         window.addEventListener('click', function (event) {
             const target = event.target;
-            const action = target.dataset.action;
             if (cartItemsElement.contains(target)) {
                 const items = document.querySelectorAll('.itemBlock');
                 items.forEach(item => {
@@ -178,6 +187,7 @@ const product = {
                 }
                 updateTotalPrice();
                 updateCartCounter();
+                updateQuantity();
             }
         });
     } else {
@@ -194,18 +204,23 @@ window.addEventListener('click', function (event) {
         const counterWrapper = target.closest('.counter-wrapper');
         if (!counterWrapper) return;
         const counter = counterWrapper.querySelector('[data-counter]');
+
         let count = parseInt(counter.textContent);
+
         if (action === "plus") {
             count++;
         } else if (action === "minus" && count > 0) {
             count--;
         }
         counter.textContent = count;
+
     }
     if (buy) {
         handleBuyButtonClickBuy(target);
+        updateQuantity();
     }
     if (buyItem) {
         handleBuyButtonClickProduct(target)
+        updateQuantity();
     }
 });

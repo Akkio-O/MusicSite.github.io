@@ -226,15 +226,16 @@
                 <input name="lastName" type="text" placeholder="Ваша Фамилия">
                 <input name="email" type="email" placeholder="Ваш E-mail">
                 <input name="phone" type="tel" placeholder="Ваш Телефон">
-                <input name="password" type="text" placeholder="Ваш Пароль">
-                <input name="confirm_password" type="text" placeholder="Подтверждение Пароля">
+                <input name="password" type="password" placeholder="Ваш Пароль">
+                <input name="confirm_password" type="password" placeholder="Подтверждение Пароля">
                 <button class="feed_form_btn feed_form_btn_submit">Зарегистрироваться</button>
             </form>
         </div>
         <div class="modal" id="log">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Вход</div>
-            <form action="/log" class="log" method="get">
+            <form id="loginForm" action="/log" class="log" method="post">
+                <input type="hidden" name="_csrf" value="">
                 <div class="row">
                     <div class="col-auto">
                         <input name="email" type="text" placeholder="Ваш Логин">
@@ -251,6 +252,7 @@
                 <button data-modal='reg' class="modal-trigger feed_form_btn"><span>Зарегистрироваться</span></button>
             </form>
         </div>
+       
         <div class="modal modal_cart" id="cart">
             <div class="modal_close">&times;</div>
             <div class="modal_subtitle">Ваша корзина</div>
@@ -259,11 +261,12 @@
                 <hr>
             </div>
             <div class="easynetshop-goods">
-                <div class="easynetshop-row easynetshop-header">
-                    <div class="easynetshop-2">Товар</div>
-                    <div class="easynetshop-3">Наименование</div>
-                    <div class="easynetshop-4">Кол-во</div>
-                    <div class="easynetshop-5">Цена</div>
+                <div class="easynetshop-row row">
+                    <div class="col-2">Товар</div>
+                    <div class="col-3">Наименование</div>
+                    <div class="col-2">Кол-во</div>
+                    <div class="col-3">Цена</div>
+                    <div class="col-2">Удалить</div>
                 </div>
                 <div class="easynetshop_wrapper">
                 </div>
@@ -429,7 +432,7 @@
                         <h3>Итог заказа:</h3>
                         <div class="row">
                             <div class="col-7">Количество товара:</div>
-                            <div class="col-5 TotalInfoItems_info">1</div>
+                            <div data-quanity class="col-5 TotalInfoItems_info">1</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Вес товара:</div>
@@ -437,23 +440,23 @@
                         </div>
                         <div class="row">
                             <div class="col-7">Цена:</div>
-                            <div class="col-5 TotalInfoItems_info">10 000 ₽</div>
+                            <div data-preTotalPrice class="col-5 TotalInfoItems_info">10 000 ₽</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Доставка:</div>
-                            <div class="col-5 TotalInfoItems_info">Бесплатно</div>
+                            <div data-Delivery class="col-5 TotalInfoItems_info">Бесплатно</div>
                         </div>
 
                         <div class="row">
                             <div class="col-7">Скидка:</div>
-                            <div class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
+                            <div data-TotalDiscount class="col-5 TotalInfoItems_info">- 3 000 ₽</div>
                         </div>
                         <div class="row">
                             <div class="col-7">Итого</div>
-                            <div class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
+                            <div data-TotalPrice class="col-5 TotalInfoItems_info" name="finally_price">7 000 ₽</div>
                         </div>
                     </div>
-                    <div class="col"><button class="finally_buy__btn">Оплатить заказ</button></div>
+                    <div class="col"><button class="finally_buy__btn feed_form_btn">Оплатить заказ</button></div>
                 </div>
             </div>
         </div>
