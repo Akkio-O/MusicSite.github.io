@@ -286,7 +286,7 @@ app.get('/main', async function (req, res) {
             res.json({ message: 'JSON response' });
         } else {
             // Отправляем HTML документ
-            const filePath = path.join(__dirname, 'src', 'index.html');
+            const filePath = path.join(__dirname, 'index.html');
             res.sendFile(filePath);
         }
     } catch (error) {
@@ -296,7 +296,7 @@ app.get('/main', async function (req, res) {
 })
 app.get('/category', async function (req, res) {
     try {
-        return res.sendFile(path.join(__dirname, 'src', 'category.html'));
+        return res.sendFile(path.join(__dirname, 'category.html'));
     } catch (error) {
         console.error('Ошибка при обращении к запросу:', error);
         return res.status(500).json({ success: false, message: 'Ошибка при обращении к запросу' });
@@ -309,7 +309,7 @@ app.get('/about', async function (req, res) {
         if (acceptType === 'json') {
             res.json({ message: 'JSON response' });
         } else {
-            const filePath = path.join(__dirname, 'src', 'about.html');
+            const filePath = path.join(__dirname, 'about.html');
             res.sendFile(filePath);
         }
     } catch (error) {
