@@ -1,0 +1,55 @@
+.about-us {
+  text-align: justify;
+  background-color: #1e1e1e;
+  border-radius: 1dvh;
+  padding-bottom: 1.5dvh;
+}
+.about-us__block {
+  text-align: center;
+}
+.about-us__title {
+  margin: 2.5dvh;
+  padding: 1dvh;
+  color: #c9c9c9;
+}
+.about-us__text {
+  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1vw;
+}
+.about-us__text .description-market {
+  background-color: #c9c9c9;
+  color: #1e1e1e;
+  padding: 1.5dvh;
+  border-radius: 1dvh;
+}
+.about-us__text .about-us__content {
+  background-color: #c9c9c9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50vw;
+  border-radius: 1dvh;
+}
+
+.requisites {
+  width: 100%;
+  background-color: #1e1e1e;
+  border-radius: 1dvh;
+  color: #ea7e67;
+  padding: 1dvh;
+  margin-top: 1.5dvh;
+  text-align: center;
+}
+.requisites__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-size: 1.2rem;
+}

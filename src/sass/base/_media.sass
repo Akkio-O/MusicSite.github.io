@@ -1,0 +1,101 @@
+@media only screen and (max-width: 1400px)
+	.category__items
+		max-width: none
+@media only screen and (max-width: 1200px)
+	.promo
+		margin: 15px auto
+	.catalog_content
+		width: 300px !important
+
+@media only screen and (max-width: 994px)
+	.icons_block
+		display: none
+		span
+			color: white
+			margin: 0 0.5vw 0 0.5vw
+			font-size: 1.5rem
+	.topnav a:not(:first-child)
+		display: none
+	.topnav_block
+		width: 100%
+		.topnav .hamburger
+			margin-right: 20px
+			display: block
+			position: absolute
+			top: 0
+			transform: translateY(15px)
+			width: 26px
+			height: 12px
+			cursor: pointer
+			span
+				display: block
+				height: 2px
+				width: 100%
+				background-color: #fff
+				margin-bottom: 5px
+				transition: .5s all
+			&_active
+				transform: translateY(25px)
+				span
+					margin-bottom: -1px
+					&:nth-child(1)
+						display: block
+						transform: rotate(-45deg)
+					&:nth-child(2)
+						display: none
+					&:nth-child(3)
+						transform: rotate(45deg)
+
+		.topnav
+			display: block !important
+			position: relative
+			justify-content: start
+			.icon
+				display: block !important
+				position: absolute
+				right: 0
+				top: 0
+		.topnav.responsive a
+			transition: 1s all
+			float: none
+			display: block
+			text-align: left
+			justify-content: start
+			font-size: 1rem
+	.promo
+		margin: auto
+	.promo .promo_search_img
+		margin: 15px 0 10px !important
+	.carousel
+		background-color: rgba(0,0,0, 0)
+		position: relative
+	.tns-item
+		img
+			height: auto !important
+	.menu_btn__block
+		display: none
+	.promo_catalog__wrapper
+		display: none
+	.category__items
+		display: none
+@media only screen and (max-width: 768px)
+	.subheader
+		background-color: #1e1e1e
+	.carousel .carousel_btn
+		display: none
+	.mini_info
+		a
+			display: none
+			text-decoration: none
+			color: #1e1e1e
+			font-size: clamp(1rem, 1vw, 1.9rem)
+			padding: clamp(10px, 1vw, 20px)
+			border-radius: 15px
+			background-color: #c9c9c9
+
+@media screen and (max-height: 450px)
+//main.css	
+	.overlay_profile
+		padding-top: 15px
+		& a 
+			font-size: 18px

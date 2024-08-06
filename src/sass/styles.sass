@@ -1,0 +1,119 @@
+$mainColor: #ea7e67
+@mixin btn
+	border-radius: 4px
+	background-color: #ea7e67
+	border: none
+	color: #FFFFFF
+	text-align: center
+	font-size: clamp(0.7rem, 1vw, 1rem)
+	padding: 10px
+	width: clamp(100px, 6vw, 150px)
+	transition: all 0.5s
+	cursor: pointer
+	margin: 0.5dvh 0
+	&:hover
+		background-color: #e75635
+@mixin profile__img
+	width: 100%
+	height: 100%
+	object-fit: cover
+	border-radius: 50%
+
+//Прогресс
+#fileUploadProgress
+	border-radius: 5px
+	background-color: $mainColor
+
+	&::-webkit-progress-bar
+		background-color: #1e1e1e
+		border-radius: 5px
+
+	&::-webkit-progress-value
+		background-color: $mainColor
+		border-radius: 5px
+
+	&::-moz-progress-bar
+		background-color: #1e1e1e
+		border-radius: 5px
+
+/* Общие стили для ползунка прокрутки */
+::-webkit-scrollbar
+	width: 12px
+
+/* Стили для ползунка прокрутки веб-кит браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar-thumb
+	background-color: #ea7e67
+	border-radius: 6px
+
+/* Стили для ползунка прокрутки Firefox */
+::-moz-scrollbar-thumb
+	background-color: #ea7e67
+	border-radius: 6px
+
+body
+	margin: 0
+	transition: background-color .5s
+	overflow-x: hidden
+*
+	box-sizing: border-box
+
+.pageup
+	position: fixed
+	display: none
+	bottom: 0
+	right: 0
+	margin: 15px
+	text-decoration: none
+	span
+		font-size: 3rem
+		color: $mainColor
+// .loader
+
+#enscart_image_wrapper
+	background-color: $mainColor !important
+.easynetshop_wrapper
+	justify-content: center
+
+.easynetshop-goods
+	text-align: center
+	width: 100%
+	display: none
+	.itemBlock
+		align-items: center
+		background-color: #c9c9c9
+		margin-bottom: 15px
+	.catalog-item__items
+		background: none
+		justify-content: center
+.btn_buy__decoration
+	display: none
+.item-img
+	max-width: 200px
+	max-height: 200px
+	border-radius: 10px
+	border: 2px solid #1e1e1e
+.easynetshop-cur-old-price
+	display: block
+	font-size: 16px
+.easynetshop-delgood
+	border: none
+	border-radius: 100%
+	background-color: #1e1e1e
+	color: $mainColor
+.old_price
+	text-decoration: line-through
+	margin-right: 10px
+.discount
+	border-radius: 15px
+	background-color: $mainColor
+	color: #fff
+	padding: 5px 10px
+
+@import 'main/section/navbar'
+@import 'main/section/promo'
+@import 'main/section/advantages'
+@import 'main/section/recommend'
+@import 'main/section/footer'
+@import 'base/modal'
+@import 'base/media'
+@import 'base/animation'

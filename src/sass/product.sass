@@ -1,0 +1,184 @@
+@mixin btn
+    border-radius: 4px
+    background-color: #ea7e67
+    border: none
+    color: #FFFFFF
+    text-align: center
+    font-size: clamp(0.7rem, 1vw, 1rem)
+    padding: 10px
+    width: clamp(100px, 6vw, 150px)
+    transition: all 0.5s
+    cursor: pointer
+    margin: 1dvh 0 1dvh 0.5vw
+    &:hover
+        background-color: #e75635
+
+@mixin nextprev_btn
+    z-index: 1
+    cursor: pointer
+    text-align: center
+    width: 4dvh
+    height: auto
+    padding: 1dvh
+    color: #fff
+    transform: rotate(90deg)
+    background-color: #ea7e67
+    text-decoration: none
+    font-weight: 700
+    font-size: 1rem
+    -webkit-transition: .6s ease
+    transition: .6s ease
+    border-radius: 100%
+.active
+    background-color: #e75635 !important
+.active_text
+    color: #ea7e67
+    font-weight: bold
+
+.category_menu__profiles
+    .promo_search__form .options
+        width: 50vw
+        margin: 15px 0
+    .flexbox
+        display: flex
+        gap: 0.5vw
+        .category_menu__profiles_dropdown
+            position: relative
+            .dropdown-content
+                position: absolute
+                border-radius: 0 0 15px 15px
+
+.product__main
+    background-color: #1e1e1e
+    color: #c9c9c9
+    padding: 2dvh
+    border-radius: 1dvh
+    width: auto
+.product__item
+    display: flex
+    position: relative
+    overflow: hidden
+    .catalog-item
+        height: auto !important
+        display: flex
+        &__old-price
+            color: #747474
+            font-size: 1.2rem
+            font-weight: 300
+            text-decoration: line-through
+            margin-left: 0.5vw
+        &__price
+            font-size: 1.5rem
+            font-weight: 700
+    .product__container
+        position: relative
+        &_title
+            font-size: 2rem
+        .product__rating
+            font-size: 1.2rem
+            color: #1e1e1e
+            display: inline-block
+            background-color: #c9c9c9
+            padding: 1dvh
+            margin: 1dvh 0 1dvh 0
+            border-radius: 1dvh
+            cursor: pointer
+        .product__btn
+            @include btn
+        .product__alternatives
+            background-color: #c9c9c9
+            border-radius: 1dvh
+            padding: 2dvh 0
+
+            .tns-item
+                background-color: #fff
+                border: none
+                img
+                    display: block
+                    margin: 0 auto
+                    border-radius: 10px
+                    width: auto
+                    height: 600px
+                p
+                    color: #1e1e1e
+            ul
+                display: flex
+                justify-content: space-around
+                li button
+                    @include btn
+            .carousel
+                display: flex
+                justify-content: center
+                align-items: center
+                border-radius: 15px
+                background-color: #333
+                position: relative
+                height: auto
+                margin: 1dvh
+                .carousel_inner1
+                    text-align: center
+                    display: flex
+                    flex-wrap: wrap
+                .carousel_btn
+                    display: block
+                .tns-item img
+                    height: 165px !important
+                .product__alternatives_prev, .product__alternatives_next
+                    @include nextprev_btn
+                    &:hover
+                        // background-color: #333
+                        color: #333
+    .product__item_card
+        display: flex
+        gap: 0.5vw
+        .carousel
+            background-color: inherit
+            height: inherit
+            text-align: center
+            .carousel_inner
+                .tns-item
+                    margin: 1dvh 1vw 0 0
+            .tns-item img
+                height: auto
+                width: 100px
+                height: 200px
+            .next, .prev
+                display: inline-block
+                @include nextprev_btn
+                margin-right: 1vw 
+                &:hover
+                    color: #1e1e1e
+        .product__container_img
+            width: 100% !important
+            height: auto
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center
+            border-radius: 1dvh
+
+.info
+    &__container
+        list-style-type: none
+        display: flex
+        justify-content: space-around
+        background-color: #333
+        margin-top: 1dvh
+        border-radius: 1dvh 1dvh 0 0
+        button
+            @include btn
+            margin: 0 auto
+            padding: 1.5dvh 0
+            font-size: 1.1rem
+
+    .AllOption
+        background-color: #c9c9c9
+        padding: 1dvh
+        margin-bottom: 1dvh
+        border-radius: 0 0 1dvh 1dvh
+        font-size: 1.2rem
+        text-align: justify
+        .Specifications
+            display: none
+
+@import 'product/category'
+@import 'product/category_navitation'

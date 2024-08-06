@@ -1,0 +1,184 @@
+// first navbar
+nav
+	background-color: #333
+	overflow: hidden
+	.icons_messengers
+		padding: 1dvh 2vw 0 2vw
+		a
+			text-decoration: none
+			span
+				color: white
+				margin: 0 0.5vw 0 0.5vw
+				font-size: 1.9rem
+				transition: 0.5s all
+				&:hover
+					color: $mainColor
+	.topnav
+		display: flex
+		justify-content: center
+		transition: 5s all
+		& a
+			float: left
+			display: flex
+			color: #f2f2f2
+			text-align: center
+			padding: 14px 16px
+			text-decoration: none
+			font-size: clamp(0.7rem, 1vw, 1rem)
+
+		a.phone
+			display: none
+		& a:hover
+			background-color: #ddd
+			color: black
+
+		.active
+			background-color: #ea7e67
+			color: white
+
+		.icon
+			display: none
+.menu_btn
+	display: flex
+	justify-content: space-evenly
+	align-items: center
+	.button
+		@include btn
+		& span
+			cursor: pointer
+			display: inline-block
+			position: relative
+			transition: 0.5s
+		& span:after
+			content: '\00bb'
+			position: absolute
+			opacity: 0
+			top: 0
+			right: -20px
+			transition: 0.5s
+
+		&:hover span
+			padding-right: 25px
+
+		&:hover span:after
+			opacity: 1
+			right: 0
+	&__cart
+		position: fixed
+		top: 80px
+		right: 20px
+		z-index: 1140
+		border: 2px solid #1e1e1e
+		background-color: #ea7e67
+		color: #FFFFFF
+		border-radius: 100%
+		width: 70px
+		height: 70px
+		display: flex
+		justify-content: center
+		align-items: center
+		margin: 0 auto
+		transition: 0.8s all
+		&:hover
+			background-color: white
+			color: $mainColor
+		.icon-cart
+			font-size: 30px
+			cursor: pointer
+			.count__cart
+				font: 15px Roboto,sans-serif
+				position: absolute
+				bottom: 0
+				left: 0
+				background: #1e1e1e
+				color: #fff
+				padding: 3px 5px 2px
+				border-radius: 50%
+.overlay_profile
+	height: 100%
+	text-align: center
+	width: 0
+	position: fixed
+	z-index: 2
+	top: 0
+	right: 0
+	background-color: #111
+	overflow-x: hidden
+	transition: 0.5s
+	padding-top: 60px
+
+	& a
+		margin: 15px auto
+		text-decoration: none
+		font-size: 25px
+		color: #818181
+		display: block
+		transition: 0.3s
+
+	& a:hover
+		color: #f1f1f1
+
+	& .closebtn
+		position: absolute
+		top: 0
+		right: 25px
+		font-size: 36px
+		margin-left: 50px
+
+#trigger_profile
+	transition: margin-left .5s
+
+.profile__wrapper
+	position: absolute
+	margin-top: 10px
+	top: 0
+	right: 6vw
+
+.profile__img_wrapper
+	width: clamp(50px, 3vw, 110px)
+	height: clamp(50px, 3vw, 110px)
+	border: 4px solid $mainColor
+	border-radius: 50%
+	display: flex
+	.profile__img
+		@include profile__img
+	span
+		display: block
+		color: white
+		font-size: 26px
+
+.main_profile__img_wrapper
+	margin: 0 auto
+	width: 200px
+	height: 200px
+	border: 4px solid $mainColor
+	border-radius: 50%
+	.main_profile__img
+		@include profile__img
+	span
+		color: white
+		font-size: 26px
+
+// second navbar
+.subheader
+	background-color: #1e1e1e
+	.mini_info
+		display: flex
+		justify-content: space-between
+		align-items: center
+		&__logo
+			padding: 1px 2vw 1px 2vw
+			display: flex
+			align-items: center
+			img
+				width: min(100px)
+			span
+				color: #c9c9c9
+				font-size: clamp(2rem, 1vw, 4rem)
+		a
+			text-decoration: none
+			color: #1e1e1e
+			font-size: clamp(1rem, 1vw, 1.9rem)
+			padding: clamp(5px, 1vw, 10px)
+			border-radius: 15px
+			background-color: #c9c9c9
