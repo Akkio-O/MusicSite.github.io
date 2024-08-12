@@ -1,5 +1,3 @@
-import { myTopnav } from './modules/header/nav.mjs';
-
 //Analog
 const productId = document.querySelector('.product__container').getAttribute('data-XML_ID');
 loadAlternatives(productId);
@@ -260,4 +258,3 @@ CategoryDropdown.addEventListener("click", function () {
             console.error('Произошла ошибка при получении данных:', error);
         });
 });
-myTopnav();

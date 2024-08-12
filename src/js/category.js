@@ -1,7 +1,7 @@
 // Импорт модулей относительно текущего JavaScript-файла
 import { displayOptions } from './modules/items/searchItems.mjs';
 import { loadData, showCategories, filterData, updateItemsDisplay, addSortEventListeners, handleCategoryClicks, dropdownItemCategory, dropdownSubCategory, dropdownCategory } from './modules/items/filterItems.mjs';
-import { myTopnav } from './modules/header/nav.mjs';
+// import { myTopnav } from './modules/header/nav.mjs';
 
 // Pagination
 // Глобальные переменные для хранения выбранных категорий
@@ -179,4 +179,4 @@ document.querySelector('#fileInput').addEventListener('change', function (event)
 // Назначаем обработчик события нажатия кнопки "Отправить"
 document.querySelector('.xlsxFileSubmit').addEventListener('click', handleSubmitButtonClick);
 
-myTopnav();
+// myTopnav();

@@ -1,7 +1,6 @@
 import * as ItemsModule from './modules/items/items.mjs';
 import { displayOptions } from './modules/items/searchItems.mjs';
 import { addSortEventListeners, addFilterEventListeners } from './modules/items/filterItems.mjs';
-import { myTopnav } from './modules/header/nav.mjs';
 // getOptions, displayOptions, clearOptions 
 
 
@@ -241,5 +240,3 @@ function mediaXl(x) {
 const x = window.matchMedia("(max-width: 1200px)")
 mediaXl(x)
 x.addListener(mediaXl)
-
-myTopnav();
