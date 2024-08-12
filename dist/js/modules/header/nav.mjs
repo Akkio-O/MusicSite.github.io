@@ -1,1 +1,0 @@
-const e=document.getElementById("myTopnav");e.addEventListener("click",(async()=>{const t=document.querySelector(".hamburger");try{"topnav"===e.className?e.className+=" responsive":e.className="topnav",t.classList.toggle("hamburger_active")}catch(e){console.error("Произошла ошибка:",e)}}));export{e as myTopnav};

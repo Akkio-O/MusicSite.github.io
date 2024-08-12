@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -17,9 +18,12 @@ const entries = htmlPages.reduce((acc, page) => {
 }, {});
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: {
         index: './src/index.js',
+        category: './src/category.js',
+        about: './src/about.js',
+        product: './src/example_product.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -68,6 +72,26 @@ module.exports = {
                 minify: false // Отключаем минификацию для диагностики
             });
         }),
+        new HtmlWebpackPlugin({
+            filename: 'category.html',
+            template: './src/category.html',
+            chunks: ['category'], // Включает только чанк 'category'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'about.html',
+            template: './src/about.html',
+            chunks: ['about'], // Включает только чанк 'about'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'example_product.html',
+            template: './src/example_product.html',
+            chunks: ['example_product'], // Включает только чанк 'example_product'
+        }),
+        // new webpack.ProvidePlugin({
+        //     $: 'jquery',
+        //     jQuery: 'jquery',
+        //     'window.jQuery': 'jquery',
+        // }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash].css',
         }),
@@ -78,16 +102,6 @@ module.exports = {
                 {
                     from: path.resolve(__dirname, 'src/img'),
                     to: path.resolve(__dirname, 'dist/img'),
-                    noErrorOnMissing: true,
-                },
-                {
-                    from: path.resolve(__dirname, 'src/css'),
-                    to: path.resolve(__dirname, 'dist/css'),
-                    noErrorOnMissing: true,
-                },
-                {
-                    from: path.resolve(__dirname, 'src/js'),
-                    to: path.resolve(__dirname, 'dist/js'),
                     noErrorOnMissing: true,
                 },
             ],

@@ -1,6 +1,8 @@
 //client script
 import counter from './js/base/counter';
 import carousel from './js/carousel/carousel';
+import JQscript from './js/JQscript';
+import jqueryValidateMin from './js/jqueryValidateMin';
 import script from './js/script';
 
     //img
@@ -9,7 +11,6 @@ import script from './js/script';
     import promo3 from "./assets/Promo_3.jpg"
     //sass
     import "./sass/styles.sass";
-    import "./sass/category.sass";
     //css
     import "./css/bootstrap-grid.min.css"
     import "./css/bootstrap-reboot.min.css";
