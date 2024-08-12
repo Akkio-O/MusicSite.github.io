@@ -85,6 +85,11 @@ module.exports = {
                     to: path.resolve(__dirname, 'dist/css'),
                     noErrorOnMissing: true,
                 },
+                {
+                    from: path.resolve(__dirname, 'src/js'),
+                    to: path.resolve(__dirname, 'dist/js'),
+                    noErrorOnMissing: true,
+                },
             ],
         }),
     ],
