@@ -23,7 +23,7 @@ module.exports = {
         index: './src/index.js',
         category: './src/category.js',
         about: './src/about.js',
-        example_product: './src/example_product.js',
+        product: './src/product.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -83,9 +83,9 @@ module.exports = {
             chunks: ['about'], // Включает только чанк 'about'
         }),
         new HtmlWebpackPlugin({
-            filename: 'example_product.html',
-            template: './src/example_product.html',
-            chunks: ['example_product'], // Включает только чанк 'example_product'
+            filename: 'product.html',
+            template: './src/product.html',
+            chunks: ['product'], // Включает только чанк 'product'
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',

@@ -1,5 +1,4 @@
 import counter from './js/base/counter';
-import category from './js/category';
 import carousel from './js/carousel/carousel';
 import JQscript from './js/JQscript';
 import jqueryValidateMin from './js/jqueryValidateMin';
