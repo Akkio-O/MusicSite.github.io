@@ -9,6 +9,7 @@ import script from './js/script';
     //sass
     import "./sass/styles.sass";
     import "./sass/category.sass";
+    import "./sass/product.sass";
     //css
     import "./css/bootstrap-grid.min.css"
     import "./css/bootstrap-reboot.min.css";

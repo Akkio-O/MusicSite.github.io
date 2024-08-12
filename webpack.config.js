@@ -23,7 +23,7 @@ module.exports = {
         index: './src/index.js',
         category: './src/category.js',
         about: './src/about.js',
-        product: './src/example_product.js',
+        example_product: './src/example_product.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -87,11 +87,11 @@ module.exports = {
             template: './src/example_product.html',
             chunks: ['example_product'], // Включает только чанк 'example_product'
         }),
-        // new webpack.ProvidePlugin({
-        //     $: 'jquery',
-        //     jQuery: 'jquery',
-        //     'window.jQuery': 'jquery',
-        // }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+        }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash].css',
         }),
